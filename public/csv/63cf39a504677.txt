@@ -1,0 +1,261 @@
+First Name,Last Name,Email,Associated Company
+Matt,Muir,office@yukondds.com,Yukon Dentistry And Braces
+Grant,Rurup,,Joecooperford
+Christin,Hill,chill@golesgarden.net,10874933642;Coles Garden
+Eugene,Schoonover,eugene.schoo@gmail.com,Sonic Group
+Jannah,Cumbie,,LGI Homes
+Ben,Williams,bwilliams@thegatechurch.tv,The Gate Church
+Delbert,Antwine,antwinedelbert@gmail.com,Faith Tabernacle Church of God in Christ
+Val,Herrera,valdemar.herrera@goldsgym.com,Gold's Gym
+Ruby,Hernadez,fadokc@yahoo.com,Fe Agrada a Dios
+Tami,ZumMallen,zummallen.realestate@gmail.com,I240 Business Park
+Buck,King,buckking@dcsok.org,Deer Creek Public Schools
+Michael,Simon,msimon@luckystarcasino.org,Lucky Star Casino
+Lon,langley,lon.markspharmacy@gmail.com,Markspharmacymwc
+,,joeacosta69@gmail.com,
+Codie,Lee,classifieds@elrenotribune.com,El Reno Tribune
+Heather,Lowry,heatherlowry@dcsok.org,Deer Creek Public Schools
+Tina,Nunn,tinanunn@dcsok.org,Deer Creek Public Schools
+Jerilyn Pester,,manpapester@gmail.com,
+Charlie,,,Lions Fitness
+Jim,Carwile,jim.carwile@braums.com,Braum's
+Drew,Eichelberger,deichelberger@bethanyschools.com,Bethany Public Schools
+Pat,Hope,pathope26@gmail.com,Norris Auto Sales
+Bill,Mee,wmee@prorealtyokc.com,Norris Auto Sales;Pro Realty
+Fadi,Issa,f@customsounds.com,Custom Sounds & Tint
+Abbey Rae,Berry,aberry@gaillardia.com,Gaillardia
+Joshua,Parsons,parsons.joshua.j@gmail.com,
+,,foster_wilcox@yahoo.com,
+,,drewwaters@allstate.com,Allstate Insurance Company
+,,linda@sellingokc.life,SellingOKC
+,,shelleymalicotestutchman@gmail.com,
+Randy,Schreier,randy.s@okemployeebenefits.com,"Oklahoma Employee Benefits & Insurance, LLC"
+,,davmross76@gmail.com,
+,,brent.w.rempe@gmail.com,
+Jenifer,Randle,jarandle31@gmail.com,
+Alexxander,Peralta,alexx@theretirementpath.com,Retirement Investment Advisors Inc
+,,ckotoole@gmail.com,
+,,oswaldo.orozco@acuok.org,Acuok
+,,korrior@icloud.com,
+Jay,Laughlin,jlaughlin@chiefengineering.org,Chiefengineering
+Jim,Kruger,jaykrug80@gmail.com,
+Jon,Johnson,jonjohnson@ibc.com,IBC Bank
+,,j.ipaye@att.net,
+,,redtruckshs@gmail.com,
+,,ad4mation@att.net,
+,,tonyfidler@ibc.com,IBC Bank
+,,ccollert@yahoo.com,
+,,andrew36902@gmail.com,
+Sloan,Simon,,Fire Leaf
+Angela,Houston ,angela@galaxyhomerecreation.com,Galaxy Home Recreation
+,,tlcwalkinclinic13@gmail.com,tlcwalkin.com
+Dr Emily,,contact@councilvethospital.net,Council Veterinary Hospital
+Luke ,McConnell ,lukemcconnell@councilrd.org,10549363792
+Missy ,Bissonnette ,missy.bissonnette@fazolis.com,Fazolis
+Christi,Dunfee,cdunfee@snu.edu,Southern Nazarene University
+Ron,Lester,rlester@mail.snu.edu,Southern Nazarene University
+Shelli,Dyer,sdyer@dentaldepot.net,Dental Depot
+Susan ,Simono,peppertreedental@mydentalmail.com,Mydentalmail
+Chris,Damaska,cdamaska@fsbokc.com,First Security Bank & Trust Company
+Rosa,Mendoza,esmy0566.em@gmail.com,
+Russ,Perry,rmperry@kvsp.com,"Perry Publishing & Broadcasting Company,Inc;KVSP FM"
+Larry,Naff,naff2naff@gmail.com,
+Michael,Buoy,buoy.michael@gmail.com,"Bonanza Real Estate Services, LLC"
+Dan,Blackburn,danblackburn@meridianbrick.com,Meridian Brick
+Deana,,deanakayfit@gmail.com,keyfitclub.com
+Janet,Connel,jconnel@firstbethany.com,First Bethany Bank & Trust
+Cynthia,Smith,cindy@putnamcityschools.org,Putnam City Schools
+Shbrone,Brookings,sbrookings@putnamcityschools.org,Putnam City Schools
+Alexis,Zeigler,alexis.zeigler@remingtonpark.com,Remington Park
+Chuck,Twelves,cktwelvesco@gmail.com,CK 12 Designs
+Eddie,Earnest,weedzstock@yahoo.com,weedzstock.com
+Seth,Stevenson,sstevenson@riversportokc.org,Riversport OKC
+Eric Adame,,eric@anagooklahomacity.com,anagooklahomacity.com
+Rosa,Golden Burrito #2,,Golden Burrito #2
+Rebecca Dawson,,rebecca@agencyvas.com,Agency Vas
+Jamie,,,Dental Arts Center
+Tania,Huerta,customerservice@redcarpetokc.com,Red Carpet Car Wash
+Geoff,Smith,gsmith@smithfarmandgarden.com,Smith Farm and Garden
+Greg,Jones,gjones@bethanyschools.com,Bethany Public Schools
+Kris,?,britton.discountcigarette@gmail.com,Britton Discount Cigarettes;Putnam City Schools
+Whitney Fleming,,whit0810@yahoo.com,
+Paul,Navarro,pnavarro@frzerbank.com,10372105745
+Natasha,Stamper,nstamper@okcthunder.com,Oklahoma City Thunder
+Danny,Barth,dbarth@okcthurnder.com,10372096437
+Makailyn,Dillon,mdillon@okerhospital.com,Oklahoma ER Hospital
+Jennifer,Fuller,jfuller@bethanyschools.com,Bethany Public Schools
+Jerry M. Wenger,,jerry.wenger@pinnaclefacilityokcity.com,Pinnaclefacilityokcity
+Kevin,Fouts,kfouts@discoveryokc.org,Discovery Church
+Emily,Ratliff,eratliff@discoveryokc.org,Discovery Church
+Robin,Bray,quailtag@gmail.com,Quail Tag Agency
+,,support+id566097@32degrees.zendesk.com,Zendesk
+,,info@32degrees.com,32 Degrees
+Michael,Hubler,michaelhubler@ibc.com,IBC Bank
+Matt,Branstetter,matt@bravestwm.com,Bravestwm;Bravest Wealth Management
+sdf,,jing@inex.net,INEX
+,,treasurer@chaumontestates.org,chaumontestates.org
+AJ Sabes PhD,,a.j.sabes@gmail.com,
+Ken,Walker,kwalker@buyforlessok.com,Buy For Less
+,,jeff.garis@fivestarpainting.com,Five Star Painting
+Joshua Dotson,,joosedotson@gmail.com,
+Rusty,Latenser,latenser@inex.net,INEX
+,,coolrobot@hubspot.com,"Hubspot, Inc."
+,,carrie@rightwayinsurance.net,Rightway Insurance
+,,carolines@chetu.com,Chetu
+michael soto,,mikesoto135@yahoo.com,
+Kitt,Letcher,kitt@oklahomacity.bbb.org,Better Business Bureau
+,,tina.white@infinitesearch.tech,Infinitesearch
+,,jack@bqlumiled.com,BQ LED - Solar
+Dirk,Allen,dallen@ireg.us,TOWN VILLAGE
+,,inkling405@gmail.com,Inkling Design
+,,alyssa@propellant.media,Propellant Media
+CJ,Jennings,cjennings@cityofdelcity.org,City Of Del City
+,,unclaimed@treasurer.ok.gov,State of Oklahoma
+,,info@okchispanicchamber.org,Greater Oklahoma City Hispanic Chamber of Commerce
+,,taijin95@outlook.com,
+,,tech@inex.net,INEX
+,,jannah.cumbie@lgihomes.com,LGI Homes
+James,Holland,ahautomotive63@yahoo.com,A&H Automotive
+Heather,Sizemore,,
+Heath,Grey,,
+Admin,INEX,sales@inex.net,INEX
+Joe,Acosta,joeacosta@inex.net,INEX
+Goddard,Ready Mix,,
+Genaro,Arriaga,,
+Gail,Rocquemore,,
+Erin,Thompson,ethompson@elrenotribune.com,El Reno Tribune
+Erin,Shaver,erin.shaver@cslplasma.com,CSL Plasma
+Edward,Luttrell,info@okcdiscountgaragedoor.com,Discount Garage
+Alexandria,ECI Insurance,,ECI Insurance
+Dylan,Skeen,,
+Dorothy,Heim,,
+Monica,Cardin,mcardin@cityofdelcity.org,City Of Del City
+Dawn,King,dawnsbarkinglot@gmail.com,
+Dave,Gardner,,
+Darren,Graumann,,
+Darcy,Jones,,
+Dan,Decker,estimating@pierdrillers.com,Pier Drillers
+Courtney,Wilson,,
+Connor,Bent,info@youmoveme.com,You Move Me
+Cody,Congdon,,
+Paul,Spence,pspence@lazye.com,Lazy E Arena
+Chip,Hobbs,chobbs@urbanleagueok.org,Urban League of Greater Oklahoma City
+Charlotte,Smith,,
+Caleb,Roche,,
+Bryan,Baker,,
+Brian,Twitty,serviceprookc@gmail.com,
+Brian,Morgan,,
+Brian,Grocer,,
+Frank Bretz,Bretz,frankbretz@cox.net,
+Beth,Brown,,
+Baher,Altekreeti,,
+Autumn,Nicole,,
+Auston,Leffler,,
+April,Ellis,,
+Anthony,Martin,,
+Andrew,Berrigan,,
+Adam,Hubbregtse,info@mosquitoshieldgokc.com,Mosquito Shield
+Dan,Garrett,dgarrett888@hotmail.com,
+Abby,Zhang,abbyled@maanled.com,MAAN OptoElectronics
+Junior,Roby,jroby@uptowngroceryco.com,UPTOWN GROCERY CO.
+Lyndsay,Bayne,lbayne@elrenotribune.com,El Reno Tribune
+Jimmy,Owens,jimmy@designtunnel.com,Design Tunnel
+Jasmine,Bigler,jasmine.bigler@horizoncreok.com,Horizon Creek Real Estate
+Jing,Taifu,luckdev9195@gmail.com,
+Nicole,Mayes,nicole.mayes@horizoncreok.com,Horizon Creek Real Estate
+Brent,Pendergraft,arborscapestreeservice@yahoo.com,
+Tim Jackson,Narcomey,tjackson@narcomey-construction.com,Narcomey-Construction
+Brittany,Merritt,bmerritt@seminolenationcasinos.com,Seminole Nation Gaming Enterprises
+Ryan,Richards,ryan@designtunnel.com,Design Tunnel
+Toby Brown -,Estate,toby@thebrowngroupok.com,TB Realty
+Steven,Marler,steve@accidentcare.com,Accident Care
+Melanie,Perry,mperry@almo.com,Almo Corporation
+Mendy,Applegate,mendy@honeydochecklist.co,Honeydochecklist
+Suzanne,Kitchens,suzabellak@gmail.com,
+Karen,Nance,elrenochamber@coxinet.net,
+Eddie,Henry,redfeatherenterprise@gmail.com,
+Lucas,Allen,lucasallen2916@gmail.com,
+A,Coury,ascoury@gmail.com,
+Jeff,White,jeff.white@fsbohomes.com,FSBOHOMES.COM
+Zach,Richardson,zacrichardson@yahoo.com,
+Pete,Zimmerman,ironhorseranchok@gmail.com,
+Mark Harris,,markhwaco@gmail.com,Rent It
+Rebecca,Trimble,rebecca.trimble@alert360.com,Alert 360
+David  Castillo,,david.castillo@okchispanicchamber.org,Greater Oklahoma City Hispanic Chamber of Commerce
+Tom,Rosser,thomas.rosser@gatewayloan.com,Gateway Mortgage Group
+Kevin,Hill,kevin@agilityavl.com,Agility AVL
+Matt,Christian,storageranch.management@gmail.com,
+Marc,Brockhaus,mbrockhaus@dunlapcodding.com,Dunlapcodding
+Mario,Avila,mario.avila@n2pub.com,N2 Publishing
+Marilyn,Olson,marilynolson@villageokc.org,Village OKC
+Joe,Sefton,joe@accesscapitalcorp.com,Access Capital
+Russell,Migl,russell@paragonokc.com,Paragon Insurance
+Thomas,Whitman,thomas.whit1211@eatel.net,
+Mitch,Pierson,mpierson@luckystarcasino.org,Lucky Star Casino
+Tom,Johnson,tom@techsmarter.com,Tech Smarter
+Michele,Walker,castagno23@gmail.com,
+Ryan,Rudebock,ryanrudebock@gmail.com,Epic Real Estate
+Paul,King,pking@paulkingelectric.com,Paul King Electric
+Robert,Coffman,coffmanhomeinspections@gmail.com,
+Sybil,Hale,sybil@presmakeready.com,Pros Make Ready
+Scott,Senner,sgenner@lincloan.com,Interlink Mortgage
+Trina,Channel,t.channel@c2it-inc.com,"C2 INNOVATIVE TECHNOLOGIES, INC."
+Dave,Thomas,dave@gasdiehler.com,
+Joshua,Walters,joshua@safeguardok.com,Safeguard Insurance
+Angela,Gulikers,angela@signsandwondersok.com,Signs & Wonders
+Melissa,Ray,melissa@inex.net,INEX
+Kathy,Hiler,kathy.hiler@ascentgl.com,Ascent Global Logistics
+Tristan,Ullstrom,rooferyoucantrust@gmail.com,Roofertotrust
+Andy,Thorne,andy.thorne@dot2dotcommunications.com,Dot2Dot Communications
+Robert,Fleming,robert@warehouse13.shop,Warehouse13
+Destiny,D'Errico,destiny.derrico@lglhomes.com,LGI Homes
+Caleb,Jackson,ck.tradepros@gmail.com,
+Kristi,Brewer,kristi@libertyfireworksok.com,Liberty Fireworks of Oklahoma;Care Plus Home Care
+David,Garner,dgarner@riverside.k12.ok.us,RIVERSIDE PUBLIC SCHOOLS
+Kirsten,Land,kirsten@landroofingokc.com,"Land Enterprises Roofing, LLC"
+Jeff,Saylors,jeff.saylors@cslplasma.com,CSL Plasma
+Debbi,Burton,dburton@cpcinsurance.com,CPC Insurance Agency
+Brandy,McKay,brandy@harrahchamber.org,Harrah Chamber of Commerce
+Larry,Donovan,idae15@coxinet.net,Blazers Ice Centre
+Kevin,Ryan,kcr@voodooelreno.com,Voodooelreno
+Dallas,Smith,service@thesourhsidegarage.com,South Side Garage
+Jeremy,Davidson,jeremy.davidson@missioninmotion.org,Mission in Motion
+Kevin,Locklear,klocklear45@outlook.com,
+Justin,Lowrance,justin.lowrance@wholesalepayments.com,
+Kaylin,Hill,kaylin@kollabcreative.com,Kollab Creative
+Kevin ,Bradley,kbradley@kfcengr.com,KFC Structural Engineering
+Ethan,Slavin,ethan@creekcre.com,Creek CRE
+Beth,Timken,btimken@prosourceok.com,
+Jennifer,Myer,jennifer.meyer@myroofsolarus.com,Myroofsolarus
+Marie,Greenly,mariegreenly@openmortgage.com,"Open Mortgage, LLC"
+Jan,Goodyear,jcgoodyear@aol.com,jcgoodyear.com
+Joseph,Patterson,joseph.patterson@geminimade.com,Gemini
+Kyle,Brownell,jkbrownell93@gmail.com,
+Brian,Ward,ideas4identity@gmail.com,
+Ronnie,Guest,rguest@choctawcity.org,The City of Choctaw
+Ian,Dauteuil,idauteuil@amshot.com,Amshot IT
+Brad,Willis,bwillis@ffb.com,First Fidelity Bank
+Larry,Stein,larste@oklahomacounty.org,Oklahoma County
+Brian,Hancock,brian.hancock@edwardjones.com,Edward Jones
+Ed,Harroz,eharroz@gmail.com,
+Damon,Devereaux,ddevereaux@icloud.com,
+Logan,Trainer,lt7@protonmail.com,
+Donald,Dick,ddick@etiequipment.com,Equipment Technology LLC
+Bobby,Dinjar,rdinjar@rimkus.com,"Rimkus Consulting Group, Inc."
+Thomas,Fiordelisi,oklahomacity.owner@mrhandyman.com,MR HANDYMAN
+Christy,Wilder,cwilder@heartland.com,Heartland Dental
+Betsy,Stevenson,betsy.rs@gmail.com,
+David,Valdez,david@salazarroofing.com,Salazar Roofing
+David,Nixon,dknixon@att.net,
+Geremy,Escobar,gerent.escobar@ccsheriff.net,Canadian Co Sheriff
+Diana,Hendrix,dhendrix@guardianangelsoke.com,Guardian Angels Conceirge
+Joe,Diaz,jdiaz@luckystarcasino.org,Lucky Star Casino
+Bonnie,Meisel,gemeisel@gmail.com,
+Art,Hyde,art.hyde@coxinet.net,
+Dave,Throckmorton,dave@remedy-complete.com,
+Ken,Larcher,baloo3@cox.net,
+Justin,Hall,justin@hallengineers.com,Hall Engineers.com
+Gabrielle,Stephenson,gabrielle.l.stephenson@sherwin.com,Sherwin-Williams
+Connie,Lulek,clulek@ventusgns.com,Ventusgns
+Brittany,Dillard,brittanymneumann@gmail.com,Dillard Real Estate Sales
+Cooper,Smith,405neon@gmail.com,

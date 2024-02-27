@@ -1,0 +1,16 @@
+@media (max-width: 768px) {
+    .tip-container, .tips{
+        display: block !important;
+    }
+    .tips, .tips .btn {
+        text-align: left !important;
+    }
+    .tip, .alert-icon {
+        width: 100%;
+        padding: 0px !important;
+    }
+    .btn-spec, .tips .btn{
+        display: block;
+        text-align: left;
+    }
+}
