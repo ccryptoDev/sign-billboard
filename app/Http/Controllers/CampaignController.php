@@ -838,14 +838,23 @@ class CampaignController extends Controller
         app()->call([$controller, 'generate_invoice_by_camp'], [
             "id" => $camp_id,
         ]);
-        if($status != 3){
-            if($free_plan == 2){ //Contract
-                Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 3, $locations));
+
+        try {
+
+            if($status != 3){
+                if($free_plan == 2){ //Contract
+                    $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 3, $locations));
+                }
+                else{
+                    $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 0, $locations));
+                }
             }
-            else{
-                Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 0, $locations));
-            }
+
+            \Illuminate\Support\Facades\Log::info("Email 'save user compaign' sent successfully");
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Email 'save user compaign' sending failed: ".$e->getMessage());
         }
+
         $data = array();
         $data['success'] = true;
         $data['id'] = $camp_id;

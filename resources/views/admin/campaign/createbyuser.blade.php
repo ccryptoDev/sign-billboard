@@ -1036,8 +1036,12 @@
 				},
                 processData : false,
                 contentType : false,
-                success : function(res){
+                success : function(response){
                     KTApp.unblockPage();
+                    if (response.startsWith('0')) {
+                        response = response.substring(1);
+                    }
+                    var res = JSON.parse(response);
                     if(res['success'] == true){
                         <?php
                             if(session('level') >= 2){
