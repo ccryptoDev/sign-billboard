@@ -928,6 +928,10 @@ class InvoiceController extends Controller
         $stripe = new \Stripe\StripeClient(
             config('app.st_sec')
         );
+
+        // log for a test
+        \Illuminate\Support\Facades\Log::info("The current st_key is " . config('app.st_sec'));
+
         $user_id = session('user_id');
         $exist_check = CheckoutModel::where('user_id', $user_id)->orderby('id', 'desc')->first();
         $invoice = Invoices::where('id', $request['inv_id'])
@@ -979,22 +983,30 @@ class InvoiceController extends Controller
                     $customer_id = $customer->id;
                 }
                 catch(\Stripe\Exception\CardException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe card exception: line#985");
                     return $e->getError()->message;
                 }
                 catch(\Stripe\Exception\CardException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe card exception: line#989");
                     return $e->getError()->message;
                 }
                 catch (\Stripe\Exception\RateLimitException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#993");
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#996");
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\AuthenticationException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#999");
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\ApiConnectionException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1002");
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\ApiErrorException $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1005");
                     return $e->getError()->message;
                 } catch (Exception $e) {
+                    \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1008");
                     return $e->getError()->message;
                 }
             }
@@ -1009,22 +1021,30 @@ class InvoiceController extends Controller
                 $customer_id = $customer->id;
             }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1023");
                 return $e->getError()->message;
             }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1027");
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1031");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1034");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1037");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1040");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1043");
                 return $e->getError()->message;
             } catch (Exception $e) {
+                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1046");
                 return $e->getError()->message;
             }
         }
@@ -1036,19 +1056,26 @@ class InvoiceController extends Controller
             );
         }
         catch(\Stripe\Exception\CardException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe card exception: line#1058");
             return $e->getError()->message;
         }
         catch (\Stripe\Exception\RateLimitException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1062");
             return $e->getError()->message;
         } catch (\Stripe\Exception\InvalidRequestException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1065");
             return $e->getError()->message;
         } catch (\Stripe\Exception\AuthenticationException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1068");
             return $e->getError()->message;
         } catch (\Stripe\Exception\ApiConnectionException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1071");
             return $e->getError()->message;
         } catch (\Stripe\Exception\ApiErrorException $e) {
+            \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1074");
             return $e->getError()->message;
         } catch (Exception $e) {
+            \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1077");
             return $e->getError()->message;
         }
         // if(isset($cus['id']) && $cus['cvc_check'] != 'pass'){
@@ -1109,19 +1136,26 @@ class InvoiceController extends Controller
                 }
             }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1138");
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1142");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1145");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1148");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1151");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1154");
                 return $e->getError()->message;
             } catch (Exception $e) {
+                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1158");
                 return $e->getError()->message;
             }
         }
@@ -1143,22 +1177,29 @@ class InvoiceController extends Controller
                 ]);
             }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1179");
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1183");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1186");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1189");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1192");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1195");
                 return $e->getError()->message;
             } catch (Exception $e) {
+                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1198");
                 return $e->getError()->message;
             }
-            try{
+            try {
                 // $amount = $request['amount'];
                 // $amount = $amount / $int;
                 $price = $stripe->prices->create([
@@ -1172,19 +1213,26 @@ class InvoiceController extends Controller
                 ]);
             }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1215");
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1219");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1222");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1225");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1228");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1231");
                 return $e->getError()->message;
             } catch (Exception $e) {
+                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1234");
                 return $e->getError()->message;
             }
             // $now = date($invoice->invoice_date);
@@ -1285,19 +1333,26 @@ class InvoiceController extends Controller
             //     return "Fail to charge from your account. Please check your balance of your card or contact us.";
             // }
             catch(\Stripe\Exception\CardException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1335");
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1339");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1342");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1345");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1348");
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
+                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1351");
                 return $e->getError()->message;
             } catch (Exception $e) {
+                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1354");
                 return $e->getError()->message;
             }
         }

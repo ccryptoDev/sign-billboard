@@ -1038,15 +1038,18 @@
                 contentType : false,
                 success : function(response){
                     KTApp.unblockPage();
-                    if (response.startsWith('0')) {
+                    if (typeof response !== 'object' && response.startsWith('0')) {
                         response = response.substring(1);
                     }
-                    var res = JSON.parse(response);
-                    if(res['success'] == true){
+                    
+                    let res;
+                    typeof response === 'object' ? res = JSON.parse(response) : res = response;
+
+                    if (res['success'] == true) {
                         <?php
                             if(session('level') >= 2){
                         ?>
-                        if(pay_method == 0){
+                        if (pay_method == 0) {
                             Swal.fire({
                                 title: "Send Payment Link to Client?",
                                 icon: "warning",
@@ -1056,26 +1059,26 @@
                                 if (result.value) {
                                     send_link(res['id']);
                                 }
-                                else{
+                                else {
                                     location.href = "/invoice-campaign/"+res['id'];
                                 }
                             });
                         }
-                        else{
+                        else {
                             location.href = "/invoice-campaign/"+res['id'];
                         }
                         <?php }
-                        else{
+                        else {
                         ?>
-                        if(pay_method == 0){
+                        if (pay_method == 0) {
                             location.href = "/invoice-campaign/"+res['id']+'?payment=true';
                         }
-                        else{
+                        else {
                             location.href = "/invoice-campaign/"+res['id'];
                         }
                         <?php }?>
                     }
-                    else{
+                    else {
                         toastr.error(res);
                     }
                 },

@@ -841,11 +841,11 @@ class CampaignController extends Controller
 
         try {
 
-            if($status != 3){
-                if($free_plan == 2){ //Contract
+            if ($status != 3) {
+                if ($free_plan == 2) { //Contract
                     $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 3, $locations));
                 }
-                else{
+                else {
                     $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 0, $locations));
                 }
             }

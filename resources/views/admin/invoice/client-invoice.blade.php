@@ -570,7 +570,7 @@
         })
         // Stripe           
         <?php
-        if(session('business_name') != "1 Demo"){
+        if (session('business_name') != "1 Demo") {
         ?>
             var stripe = Stripe("{{config('app.st_pub')}}");
             var elements = stripe.elements();
