@@ -211,11 +211,15 @@ try {
 /*     Contact us       */
 //********************* */
 try {
-    function validateForm() {
+    function validateForm(event) {
+        event.preventDefault();
+
         var name = document.forms["myForm"]["name"].value;
         var email = document.forms["myForm"]["email"].value;
-        var subject = document.forms["myForm"]["subject"].value;
-        var comments = document.forms["myForm"]["comments"].value;
+        var type = document.forms["myForm"]["type"].value;
+        var message = document.forms["myForm"]["message"].value;
+        var recaptchaResponse = document.getElementById("g-recaptcha-response").value;
+
         document.getElementById("error-msg").style.opacity = 0;
         document.getElementById('error-msg').innerHTML = "";
         if (name == "" || name == null) {
@@ -228,33 +232,75 @@ try {
             fadeIn();
             return false;
         }
-        if (subject == "" || subject == null) {
+        if (type == "" || type == null) {
             document.getElementById('error-msg').innerHTML = "<div class='alert alert-warning error_message'>*Please enter a Subject*</div>";
             fadeIn();
             return false;
         }
-        if (comments == "" || comments == null) {
+        if (message == "" || message == null) {
             document.getElementById('error-msg').innerHTML = "<div class='alert alert-warning error_message'>*Please enter a Comments*</div>";
             fadeIn();
             return false;
         }
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("simple-msg").innerHTML = this.responseText;
-                document.forms["myForm"]["name"].value = "";
-                document.forms["myForm"]["email"].value = "";
-                document.forms["myForm"]["subject"].value = "";
-                document.forms["myForm"]["comments"].value = "";
+
+        // var formData = "name=" + encodeURIComponent(name) +
+        //            "&email=" + encodeURIComponent(email) +
+        //            "&subject=" + encodeURIComponent(subject) +
+        //            "&message=" + encodeURIComponent(comments) +
+        //            "&g-recaptcha-response=" + encodeURIComponent(recaptchaResponse);
+
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         document.getElementById("simple-msg").innerHTML = this.responseText;
+        //         document.forms["myForm"]["name"].value = "";
+        //         document.forms["myForm"]["email"].value = "";
+        //         document.forms["myForm"]["type"].value = "";
+        //         document.forms["myForm"]["message"].value = "";
+        //     }
+        // };
+        // xhttp.open("POST", "/contact", true);
+        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+        // xhttp.send(formData);
+
+        var formData = JSON.stringify({ 
+            name: name, 
+            email: email, 
+            type: type, 
+            message: message,
+            'g-recaptcha-response': encodeURIComponent(recaptchaResponse)
+        });
+
+        fetch('/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Server error: ' + response.status); 
             }
-        };
-        xhttp.open("POST", "php/contact.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("name=" + name + "&email=" + email + "&subject=" + subject + "&comments=" + comments);
-        return false;
-      }
+            // return response.json();
+
+            document.getElementById("simple-msg").innerHTML = "Thanks for contacting us.";
+            document.forms["myForm"].reset();
+        })
+        // .then(data => {
+        //     document.getElementById("simple-msg").innerHTML = data.message;
+        //     document.forms["myForm"].reset();
+        // })
+        .catch(error => {
+            console.error('Error:', error.message); 
+            document.getElementById("simple-msg").innerHTML = "An error occurred while processing your request. Please try again later.";
+        });
+        // return false;
+    }
     
-      function fadeIn() {
+    function fadeIn() {
         var fade = document.getElementById("error-msg");
         var opacity = 0;
         var intervalID = setInterval(function () {

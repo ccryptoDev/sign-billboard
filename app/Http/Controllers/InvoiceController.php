@@ -1246,8 +1246,8 @@ class InvoiceController extends Controller
             $cancel_date = strtotime($campaign->end_date);
             $current = date('Y-m-d');
             $current = strtotime($current);
-            try{
-                if($invoice_date <= $current){
+            try {
+                if ($invoice_date <= $current){
                     $subscription = $stripe->subscriptions->create([
                         'customer' => $cus->customer,
                         'items' => [
@@ -1256,7 +1256,7 @@ class InvoiceController extends Controller
                         'cancel_at' => $cancel_date,
                     ]);
                 }
-                else{
+                else {
                     $subscription = $stripe->subscriptions->create([
                         'customer' => $cus->customer,
                         'items' => [

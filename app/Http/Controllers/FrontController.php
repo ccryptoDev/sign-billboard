@@ -75,9 +75,21 @@ class FrontController extends Controller
         if($res['success'] == false){
             return back()->withErrors("Please verify you are a human")->withInput();
         }
-        Mail::to('sales@inex.net')->send(new ContactUs($request));
+        try {
+            $mail_result = Mail::to('sales@inex.net')->send(new ContactUs($request));
+            \Illuminate\Support\Facades\Log::info("Email 'contact' sent successfully:  " . $request->message);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Email 'contact' sending failed: ".$e->getMessage(), [
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'exception_string' => $e->__toString(),
+            ]);
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
         return back()->withInput()->withSuccess('Thanks for contacting us.');
     }
+
     // About Us
     public function about_us(Request $request){
         $data = array();

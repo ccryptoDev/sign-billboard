@@ -1042,8 +1042,8 @@
                         response = response.substring(1);
                     }
                     
-                    let res;
-                    typeof response === 'object' ? res = JSON.parse(response) : res = response;
+                    let res = response;
+                    // typeof response === 'object' ? res = JSON.parse(response) : res = response;
 
                     if (res['success'] == true) {
                         <?php

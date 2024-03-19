@@ -214,7 +214,7 @@
             </div>
             <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0 order-2 order-md-1">
                 <div class="card custom-form rounded border-0 shadow p-4">
-                    <form method="post" action="/contact" name="myForm" onsubmit="return validateForm()">
+                    <form method="post" action="/contact" name="myForm" onsubmit="return validateForm(event)">
                         <p id="error-msg" class="mb-0"></p>
                         <div id="simple-msg"></div>
                         <div class="row">

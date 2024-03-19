@@ -17,6 +17,7 @@ use App\Mail\UserCampaignMail;
 use App\Mail\SendPaymentLink;
 use App\Mail\PaymentLinkManual;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 
 class CampaignController extends Controller
 {
@@ -839,8 +840,21 @@ class CampaignController extends Controller
             "id" => $camp_id,
         ]);
 
-        try {
+        /**
+         * log mail config
+         */
+        $mailConfig = [
+            'to' => $user->email,
+            'driver' => Config::get('mail.driver'),
+            'host' => Config::get('mail..host'),
+            'port' => Config::get('mail..port'),
+            'encryption' => Config::get('mail.encryption'),
+            'username' => Config::get('mail.username'),
+        ];
+        \Illuminate\Support\Facades\Log::info("mail config: ", $mailConfig);
 
+        $data = array();
+        try {
             if ($status != 3) {
                 if ($free_plan == 2) { //Contract
                     $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 3, $locations));
@@ -848,14 +862,21 @@ class CampaignController extends Controller
                 else {
                     $res = Mail::to($user->email)->send(new UserCampaignMail($user, $user_camp, 0, $locations));
                 }
-            }
+            }   
 
+            $data['msg'] = $res;
             \Illuminate\Support\Facades\Log::info("Email 'save user compaign' sent successfully");
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error("Email 'save user compaign' sending failed: ".$e->getMessage());
+            \Illuminate\Support\Facades\Log::error("Email 'save user compaign' sending failed: ".$e->getMessage(), [
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'exception_string' => $e->__toString(),
+            ]);
+            $data['success'] = false;
+            $data['msg'] = "An error occured while sending a mail: " . $e->getMessage();
         }
 
-        $data = array();
         $data['success'] = true;
         $data['id'] = $camp_id;
         return $data;
