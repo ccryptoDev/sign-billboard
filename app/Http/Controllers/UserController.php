@@ -797,32 +797,87 @@ class UserController extends Controller
             ->where('tbl_business.primary_id', $user_id)
             ->select('tbl_user.*', 'tbl_business.address', 'tbl_business.zip', 'tbl_business.city', 'tbl_business.state')
             ->first();
-        if($request['status'] == 0){
+        if ($request['status'] == 0) {
             $status = 1;
         }
-        else{
-            if(isset($user->id)){
+        else {
+            if(isset($user->id)) {
                 $business_name = $user->business_name;
                 $this->create_blank_template($business_name);
             }
+
             // Send to Client
             $business = Business::where('primary_id', $user->id)->first();
-            if($business->sales != null){
-                $account_manager = DB::table('tbl_user', $business->sales)->first();
-                Mail::to($user->email)->send(new NewBusiness($user,$account_manager, 0)); // 0 : User, 1 : Super
-            }
-            // Notify to Account Manager
-            if(isset($business->id)){
+            if ($business->sales != null) {
+                // The wrong query from Jing
+                // $account_manager = DB::table('tbl_user', $business->sales)->first();
                 $account_manager = DB::table('tbl_user')
                     ->where('id', $business->sales)
                     ->first();
-                if(isset($account_manager->id)){
-                    Mail::to($user->email)->send(new ActivateMail($user, $account_manager));
+                
+                 if (isset($account_manager)) {
+                    \Illuminate\Support\Facades\Log::info("Check account_manager before sending email: " . $account_manager->id);
+
+                    try {
+                        $emailResult = Mail::to($user->email)->send(new NewBusiness($user, $account_manager, 0)); // 0 : User, 1 : Super
+                        \Illuminate\Support\Facades\Log::info("Email 'new business: To client' sent successfully: " . $emailResult);
+                    } catch (\Exception $e) {
+                        \Illuminate\Support\Facades\Log::error("Email 'new business: To client' sending failed: ". $e->getMessage(), [
+                            'to' => $user->email,
+                            'code' => $e->getCode(),
+                            'file' => $e->getFile(),
+                            'line' => $e->getLine(),
+                            'exception_string' => $e->__toString(),
+                        ]);
+
+                        return "fail";
+                    }
                 }
-                try{
-                    Mail::to($account_manager->email)->send(new NewBusiness($user, $account_manager, 1));
-                }
-                catch (\Exception $e) {
+            }
+            
+            // Notify to Account Manager
+            if (isset($business->id)) {
+                $account_manager = DB::table('tbl_user')
+                    ->where('id', $business->sales)
+                    ->first();
+
+                if (isset($account_manager)) {
+                    \Illuminate\Support\Facades\Log::info("Check account_manager->id before sending a mail: " . $account_manager->id);
+                    if (isset($account_manager->id)) {
+                        try {
+                            $emailResult = Mail::to($user->email)->send(new ActivateMail($user, $account_manager));
+                            \Illuminate\Support\Facades\Log::info("Email 'Activate business: Notify to Client' sent successfully: " . $emailResult);
+                        } catch (\Exception $e) {
+                            \Illuminate\Support\Facades\Log::error("Email 'Activate business: Notify to Client' sending failed: ". $e->getMessage(), [
+                                'to' => $user->email,
+                                'code' => $e->getCode(),
+                                'file' => $e->getFile(),
+                                'line' => $e->getLine(),
+                                'exception_string' => $e->__toString(),
+                            ]);
+
+                            return "fail";
+                        }
+                    }
+
+                    \Illuminate\Support\Facades\Log::info("Check account_manager->email before sending a mail: " . $account_manager->email);
+                    if ($account_manager->email) {
+                        try {
+                            $emailResult = Mail::to($account_manager->email)->send(new NewBusiness($user, $account_manager, 1));
+                            \Illuminate\Support\Facades\Log::info("Email 'New business: Notify to Account manager' sent successfully: " . $emailResult);
+                        }
+                        catch (\Exception $e) {
+                            \Illuminate\Support\Facades\Log::error("Email 'New business: Notify to Account manager' sending failed: ". $e->getMessage(), [
+                                'to' => $account_manager->email,
+                                'code' => $e->getCode(),
+                                'file' => $e->getFile(),
+                                'line' => $e->getLine(),
+                                'exception_string' => $e->__toString(),
+                            ]);
+
+                            return "fail";
+                        }
+                    }
                 }
             }
         }
