@@ -148,7 +148,8 @@ class FrontController extends Controller
         return 'fail';
     }
     public function subscribe_view(Request $request){
-        $id = base64_decode($request->id);
+        // $id = base64_decode($request->id);
+        $id = $request->id;
         $data = DocModel::where('id', $id)->first();
         $result = [];
         if(isset($data->id)){
