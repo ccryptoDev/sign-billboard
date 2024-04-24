@@ -155,7 +155,7 @@
                                     </div>
                                     @if(session('level') >= 2)
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
                                             <label>Franchise</label>
                                             @if(session('level') == 2)
                                             <select class="form-control select2" id="super_drop" name="super" autocomplete="off">
@@ -175,7 +175,11 @@
                                             </select>
                                             @endif
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label>How did you hear about INEX?</label>
+                                            <input type="text" class="form-control" name="hear" value="1" />
+                                        </div>
+                                        <div class="form-group col-md-4">
                                             <label>Account Manager</label>
                                             <select class="form-control select2" id="sales" name="sales" autocomplete="off"></select>
                                         </div>
