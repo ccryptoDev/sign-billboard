@@ -964,7 +964,9 @@ class InvoiceController extends Controller
         $amount = $this->format_amount($request['amount']);
         $created = date_create($campaign->start_date);
         $customer_id = '';
-        if(isset($exist_check->id)){
+        
+        // in case of customer has paid
+        if (isset($exist_check->id)) {
             $customer_id = $exist_check->customer_id;
             $stripe = new \Stripe\StripeClient(
                 config('app.st_sec')
@@ -973,7 +975,9 @@ class InvoiceController extends Controller
                 $customer_id,
                 []
             );
-            if(!isset($cus->id)){
+
+            // if customer doesn't exist
+            if(!isset($cus->id)) {
                 try {
                     $customer = $stripe->customers->create([
                         'name' => $request['user_name'],
@@ -1010,8 +1014,9 @@ class InvoiceController extends Controller
                     return $e->getError()->message;
                 }
             }
-        }
-        else{
+        } 
+        else { // in case of customer has never paid
+            // first, create customer in stripe
             try {
                 $customer = $stripe->customers->create([
                     'name' => $request['user_name'],
@@ -1048,6 +1053,7 @@ class InvoiceController extends Controller
                 return $e->getError()->message;
             }
         }
+
         // Payment Method
         try {
             $cus = $stripe->customers->createSource(
@@ -1078,10 +1084,13 @@ class InvoiceController extends Controller
             \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1077");
             return $e->getError()->message;
         }
+
         // if(isset($cus['id']) && $cus['cvc_check'] != 'pass'){
         //     return "Please input valid CVC Number";
         // }
-        if($invoice->sch == 0 || ($invoice->sch == 1 && $invoice->sch == 0)){
+
+        // sch == 0: credit card, 1: invoice
+        if ($invoice->sch == 0 || ($invoice->sch == 1 && $invoice->sch == 0)) { // credit card
             try {
                 $charge = $stripe->charges->create([
                     'amount' => $amount * 100,
@@ -1160,7 +1169,7 @@ class InvoiceController extends Controller
             }
         }
         // Create Price - Only 1 for Every week and will be 2 for 4 Weeks
-        else{
+        else {
             $int = 4;
             if($invoice->sch == 1){
                 $int = 1;
