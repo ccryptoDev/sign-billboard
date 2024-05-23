@@ -921,6 +921,7 @@ class InvoiceController extends Controller
             return "success";
         }
     }
+
     public function checkout(Request $request){
         if(!Session::has('user_id')){
             return "Your session has been expired. Please refresh your browser and try again.";
@@ -976,7 +977,9 @@ class InvoiceController extends Controller
                 []
             );
 
-            // if customer doesn't exist
+            \Illuminate\Support\Facades\Log::info("stripe log - line#979");
+
+            // if customer doesn't exist (new user in stripe)
             if(!isset($cus->id)) {
                 try {
                     $customer = $stripe->customers->create([
@@ -985,32 +988,35 @@ class InvoiceController extends Controller
                         'description' => 'Customer - '.$user_id,
                     ]);
                     $customer_id = $customer->id;
+
+                    \Illuminate\Support\Facades\Log::info("stripe log (create) - line#991: " . $user_id . " - " . $customer_id);
+
                 }
                 catch(\Stripe\Exception\CardException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe card exception: line#985");
+                    \Illuminate\Support\Facades\Log::error("stripe card exception: line#985: " . $e->getError()->message);
                     return $e->getError()->message;
                 }
                 catch(\Stripe\Exception\CardException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe card exception: line#989");
+                    \Illuminate\Support\Facades\Log::error("stripe card exception: line#989: " . $e->getError()->message);
                     return $e->getError()->message;
                 }
                 catch (\Stripe\Exception\RateLimitException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#993");
+                    \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#993: " . $e->getError()->message);
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\InvalidRequestException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#996");
+                    \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#996: " . $e->getError()->message);
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\AuthenticationException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#999");
+                    \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#999: " . $e->getError()->message);
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\ApiConnectionException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1002");
+                    \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1002: " . $e->getError()->message);
                     return $e->getError()->message;
                 } catch (\Stripe\Exception\ApiErrorException $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1005");
+                    \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1005: " . $e->getError()->message);
                     return $e->getError()->message;
                 } catch (Exception $e) {
-                    \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1008");
+                    \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1008: " . $e->getError()->message);
                     return $e->getError()->message;
                 }
             }
@@ -1024,32 +1030,34 @@ class InvoiceController extends Controller
                     'description' => 'Customer - '.$user_id,
                 ]);
                 $customer_id = $customer->id;
+
+                \Illuminate\Support\Facades\Log::info("stripe log (create) - line#1033: " . $user_id . " - " . $customer_id);
             }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1023");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1023: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1027");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1027: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1031");
+                \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1031: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1034");
+                \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1034: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1037");
+                \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1037: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1040");
+                \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1040: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1043");
+                \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1043: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (Exception $e) {
-                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1046");
+                \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1046: " . $e->getError()->message);
                 return $e->getError()->message;
             }
         }
@@ -1060,28 +1068,36 @@ class InvoiceController extends Controller
                 $customer_id,
                 ['source' => $request['token']]
             );
+
+            \Illuminate\Support\Facades\Log::info("stripe log (createSource) - line#1071: " . $customer_id);
+
+            // update after creating a card with token
+            $stripe->customers->update(
+                $customer_id,
+                ['invoice_settings' => ['default_payment_method' => $cus->id]]
+            );
         }
         catch(\Stripe\Exception\CardException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe card exception: line#1058");
+            \Illuminate\Support\Facades\Log::error("stripe card exception: line#1058: " . $e->getError()->message);
             return $e->getError()->message;
         }
         catch (\Stripe\Exception\RateLimitException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1062");
+            \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1062: " . $e->getError()->message);
             return $e->getError()->message;
         } catch (\Stripe\Exception\InvalidRequestException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1065");
+            \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1065: " . $e->getError()->message);
             return $e->getError()->message;
         } catch (\Stripe\Exception\AuthenticationException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1068");
+            \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1068: " . $e->getError()->message);
             return $e->getError()->message;
         } catch (\Stripe\Exception\ApiConnectionException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1071");
+            \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1071: " . $e->getError()->message);
             return $e->getError()->message;
         } catch (\Stripe\Exception\ApiErrorException $e) {
-            \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1074");
+            \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1074: " . $e->getError()->message);
             return $e->getError()->message;
         } catch (Exception $e) {
-            \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1077");
+            \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1077: " . $e->getError()->message);
             return $e->getError()->message;
         }
 
@@ -1096,10 +1112,13 @@ class InvoiceController extends Controller
                     'amount' => $amount * 100,
                     'currency' => 'usd',
                     'customer' => $cus->customer,
-                    'description' => 'INEX - Campaign'.$invoice->campaign_id,
+                    'description' => 'INEX - Campaign' . $invoice->campaign_id,
                     // 'capture' => false,
                 ]);
-                if($charge->status == "succeeded"){
+
+                \Illuminate\Support\Facades\Log::info("stripe log (create) - line#1112: " . $charge->status);
+
+                if ($charge->status == "succeeded") {
                     $checkout = new CheckoutModel;
                     $checkout->user_id = $user_id;
                     $checkout->campaign_id = $invoice->campaign_id;
@@ -1108,6 +1127,9 @@ class InvoiceController extends Controller
                     $checkout->invoice_id = $request['inv_id'];
                     $checkout->ch_id = $charge->id;
                     $checkout->save();
+
+                    \Illuminate\Support\Facades\Log::info("New checkout is done - line#1124");
+
                     // Generate sub invoice
                     // $this->generate_sub_invoice($request['inv_id'], $user_id);
                     // Check remaining weeks
@@ -1116,10 +1138,14 @@ class InvoiceController extends Controller
                         ->update([
                             'status' => 1
                         ]);
+
                     // Send Mail
                     $locations = DB::table('tbl_locations')->get();
                     $user = DB::table('tbl_user')->where('id', $user_id)->first();
                     Mail::to($user->email)->send(new UserCampaignMail($user, $campaign, 1, $locations));
+
+                    \Illuminate\Support\Facades\Log::info("The customer paid for invoice - line#1140");
+                    
                     // return result
                     $result = [];
                     $result['success'] = true;
@@ -1145,31 +1171,31 @@ class InvoiceController extends Controller
                 }
             }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1138");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1138: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1142");
+                \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1142: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1145");
+                \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1145: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1148");
+                \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1148: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1151");
+                \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1151: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1154");
+                \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1154: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (Exception $e) {
-                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1158");
+                \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1158: " . $e->getError()->message);
                 return $e->getError()->message;
             }
         }
         // Create Price - Only 1 for Every week and will be 2 for 4 Weeks
-        else {
+        else { // creates product, price and subscription
             $int = 4;
             if($invoice->sch == 1){
                 $int = 1;
@@ -1180,34 +1206,40 @@ class InvoiceController extends Controller
             if($invoice->sch == 3){
                 $int = 12;
             }
-            try{
+
+            // create products in stripe
+            try {
                 $product = $stripe->products->create([
                     'name' => "User Campaign (INEX) - Invoice ID : ".$invoice->id,
                 ]);
+
+                \Illuminate\Support\Facades\Log::info("stripe log (products create) - line#1207: " . $invoice->id . " - " . $product->id);
+
             }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1179");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1179: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1183");
+                \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1183: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1186");
+                \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1186: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1189");
+                \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1189: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1192");
+                \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1192: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1195");
+                \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1195: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (Exception $e) {
-                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1198");
+                \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1198: " . $e->getError()->message);
                 return $e->getError()->message;
             }
+
             try {
                 // $amount = $request['amount'];
                 // $amount = $amount / $int;
@@ -1220,28 +1252,30 @@ class InvoiceController extends Controller
                     ],
                     'product' => $product->id,
                 ]);
+
+                \Illuminate\Support\Facades\Log::info("stripe log (price create) - line#1248: " . $product->id);
             }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1215");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1215: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1219");
+                \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1219: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1222");
+                \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1222: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1225");
+                \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1225: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1228");
+                \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1228: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1231");
+                \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1231: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (Exception $e) {
-                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1234");
+                \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1234: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             // $now = date($invoice->invoice_date);
@@ -1264,6 +1298,8 @@ class InvoiceController extends Controller
                         ],
                         'cancel_at' => $cancel_date,
                     ]);
+
+                    \Illuminate\Support\Facades\Log::info("stripe log (subscription created) - line#1295: " . $subscription->id . " - " . $price->id . " - " . $current . " - " . $cancel_date);
                 }
                 else {
                     $subscription = $stripe->subscriptions->create([
@@ -1275,6 +1311,8 @@ class InvoiceController extends Controller
                         'cancel_at' => $cancel_date,
                         'trial_end' => $invoice_date
                     ]);
+
+                    \Illuminate\Support\Facades\Log::info("stripe log (subscription created - trial_end) - line#1295: " . $subscription->id . " - " . $price->id . " - " . $current . " - " . $cancel_date);
                 }
                 // $subscription = $stripe->subscriptionSchedules->create([
                 //     'customer' => $cus->customer,
@@ -1292,76 +1330,86 @@ class InvoiceController extends Controller
                 //     ],
                 //     ],
                 // ]);
-            // if(isset($subscription->id) && $subscription->status == "released"){
-                $checkout = new CheckoutModel;
-                $checkout->user_id = $user_id;
-                $checkout->campaign_id = $invoice->campaign_id;
-                $checkout->customer_id = $customer_id;
-                $checkout->amount = $amount;
-                $checkout->invoice_id = $request['inv_id'];
-                $checkout->ch_id = $subscription->id;
-                $checkout->extra = $invoice->sch;
-                $checkout->save();
 
-                // Generate sub invoice
-                // $this->generate_sub_invoice($request['inv_id'], $user_id);
-                // $sub = $stripe->subscriptionSchedules->release(
-                //     $subscription->id,
-                //     []
-                // );
-                $this->update_remain_camp($invoice->id, $int);
-                // Send Mail
-                $locations = DB::table('tbl_locations')->get();
-                $user = DB::table('tbl_user')->where('id', $user_id)->first();
-                Mail::to($user->email)->send(new UserCampaignMail($user, $campaign, 1, $locations));
-                // return result
-                $result = [];
-                $result['success'] = true;
-                $result['data'] = '<h2 class="text-center font-weight-bolder mb-5 text-success">Success</h2>
-                    <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
-                        <span>Credit Card Name: </span>
-                        <span>'.$request['user_name'].'</span>
-                    </div>
-                    <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
-                        <span>Amount Charged: </span>
-                        <span>$ '.number_format($amount, 2).'</span>
-                    </div>
-                    <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
-                        <span>Transaction ID: </span>
-                        <span>'.$subscription->id.'</span>
-                    </div>
-                    <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
-                        <span>Date: </span>
-                        <span>'.date_format($created, "m-d-Y").'</span>
-                    </div>';
-                return $result;
-                return "success";
-            // }
+                if ($subscription->status === 'active') {
+
+                    \Illuminate\Support\Facades\Log::info("stripe log - subscription success!!!");
+
+                    $checkout = new CheckoutModel;
+                    $checkout->user_id = $user_id;
+                    $checkout->campaign_id = $invoice->campaign_id;
+                    $checkout->customer_id = $customer_id;
+                    $checkout->amount = $amount;
+                    $checkout->invoice_id = $request['inv_id'];
+                    $checkout->ch_id = $subscription->id;
+                    $checkout->extra = $invoice->sch;
+                    $checkout->save();
+
+                    \Illuminate\Support\Facades\Log::info("inserting into checkout table after subscription success: " . $user_id . " - " . $invoice->campaign_id . " - " . $amount);
+                    // Generate sub invoice
+                    // $this->generate_sub_invoice($request['inv_id'], $user_id);
+                    // $sub = $stripe->subscriptionSchedules->release(
+                    //     $subscription->id,
+                    //     []
+                    // );
+                    $this->update_remain_camp($invoice->id, $int);
+
+                    // Send Mail
+                    $locations = DB::table('tbl_locations')->get();
+                    $user = DB::table('tbl_user')->where('id', $user_id)->first();
+                    Mail::to($user->email)->send(new UserCampaignMail($user, $campaign, 1, $locations));
+
+                    \Illuminate\Support\Facades\Log::info("Seding email after subscription success: " . $user->email);
+
+                    // return result
+                    $result = [];
+                    $result['success'] = true;
+                    $result['data'] = '<h2 class="text-center font-weight-bolder mb-5 text-success">Success</h2>
+                        <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
+                            <span>Credit Card Name: </span>
+                            <span>'.$request['user_name'].'</span>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
+                            <span>Amount Charged: </span>
+                            <span>$ '.number_format($amount, 2).'</span>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
+                            <span>Transaction ID: </span>
+                            <span>'.$subscription->id.'</span>
+                        </div>
+                        <div class="col-md-12 d-flex align-items-center justify-content-between flex-grow-1 mb-5">
+                            <span>Date: </span>
+                            <span>'.date_format($created, "m-d-Y").'</span>
+                        </div>';
+                    return $result;
+                    return "success";
+                }
+                else {
+                    \Illuminate\Support\Facades\Log::info("stripe log - subscription failed!!!");
+                    return "Fail to charge from your account. Please check your balance of your card or contact us.";
+                }
             }
-            // else{
-            //     return "Fail to charge from your account. Please check your balance of your card or contact us.";
-            // }
             catch(\Stripe\Exception\CardException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe card exception: line#1335");
+                \Illuminate\Support\Facades\Log::error("stripe card exception: line#1335: " . $e->getError()->message);
                 return $e->getError()->message;
             }
             catch (\Stripe\Exception\RateLimitException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe RateLimitException: line#1339");
+                \Illuminate\Support\Facades\Log::error("stripe RateLimitException: line#1339: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\InvalidRequestException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe InvalidRequestException: line#1342");
+                \Illuminate\Support\Facades\Log::error("stripe InvalidRequestException: line#1342: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\AuthenticationException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe AuthenticationException: line#1345");
+                \Illuminate\Support\Facades\Log::error("stripe AuthenticationException: line#1345: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiConnectionException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiConnectionException: line#1348");
+                \Illuminate\Support\Facades\Log::error("stripe ApiConnectionException: line#1348: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (\Stripe\Exception\ApiErrorException $e) {
-                \Illuminate\Support\Facades\Log::info("stripe ApiErrorException: line#1351");
+                \Illuminate\Support\Facades\Log::error("stripe ApiErrorException: line#1351: " . $e->getError()->message);
                 return $e->getError()->message;
             } catch (Exception $e) {
-                \Illuminate\Support\Facades\Log::info("stripe unknown exception: line#1354");
+                \Illuminate\Support\Facades\Log::error("stripe unknown exception: line#1354: " . $e->getError()->message);
                 return $e->getError()->message;
             }
         }
@@ -1990,6 +2038,7 @@ class InvoiceController extends Controller
         return "success";
         return $request;
     }
+
     public function current_revenue(Request $request){
         if(!Session::has('user_id')){
             return redirect('login');
@@ -2062,7 +2111,8 @@ class InvoiceController extends Controller
         $data['account'] = $account;
         return view('admin.transaction.current-revenue', $data);
     }
-    public function get_available_funds($user_id){
+
+    public function get_available_funds($user_id) {
         $today = date("Y-m-d");
         $user = Admin::where('id', $user_id)->first();
         $user_level = isset($user->id)?$user->level:session('level');
@@ -2084,7 +2134,8 @@ class InvoiceController extends Controller
             ->where('tbl_user_campaign.free_plan', 0)
             ->orWhere("tbl_invoice.campaign_id", 0)
             ->get();
-        foreach($invoices as $key => $val){
+
+        foreach($invoices as $key => $val) {
             // if($user_name == 'INEX Sales'){
             //     $user_inv = Admin::where('id', $val->user_id)->first();
             //     if(isset($user_inv->id)){
@@ -2094,55 +2145,55 @@ class InvoiceController extends Controller
             // else{
                 $business_name = $val->business_name;
             // }
-            if($business_name != '' || $business_name != null){
-              $business = Business::where('company_name', $business_name)
-                  ->where('sales', "!=", null)
-                  ->first();
-              // Check Assigned Locations about Franchise
-              if($user_level == 3){
-                  $free_locations = FreeLocations::where('business_name', $user_name)->get();
-                  $free_locations_name = [];
-                  foreach($free_locations as $temp){
-                      $location = DB::table('tbl_locations')
-                          ->where('id', $temp['location_id'])
-                          ->first();
-                      $free_locations_name[] = $location->name;
-                  }
-                  $data = json_decode($val->data, true);
-                  $locations = [];
-                  $exist = false;
-                  foreach($data as $temp){
-                      if(isset($temp['location_name']) && in_array($temp['location_name'], $free_locations_name)){
-                          $exist = true;
-                      }
-                  }
+            if($business_name != '' || $business_name != null) {
+                $business = Business::where('company_name', $business_name)
+                    ->where('sales', "!=", null)
+                    ->first();
+                // Check Assigned Locations about Franchise
+                if($user_level == 3) {
+                    $free_locations = FreeLocations::where('business_name', $user_name)->get();
+                    $free_locations_name = [];
+                    foreach($free_locations as $temp){
+                        $location = DB::table('tbl_locations')
+                            ->where('id', $temp['location_id'])
+                            ->first();
+                        $free_locations_name[] = $location->name;
+                    }
+                    $data = json_decode($val->data, true);
+                    $locations = [];
+                    $exist = false;
+                    foreach($data as $temp){
+                        if(isset($temp['location_name']) && in_array($temp['location_name'], $free_locations_name)){
+                            $exist = true;
+                        }
+                    }
                 //   if($user_name == 'INEX Sales'){
                 //       if($exist == true){
                 //           unset($invoices[$key]);
                 //       }
                 //   }
                 //   else{
-                      if($exist == false || !isset($business->id)){
-                          unset($invoices[$key]);
-                      }
+                    if($exist == false || !isset($business->id)){
+                        unset($invoices[$key]);
+                    }
                 //   }
-              }
-              else{
-                  if(($user_level != 2 && isset($business->id) && ($business->sales == $user_id || $business->super == $user_id)) 
-                      || ($user_level == 2 && isset($business->id))
-                  ){
-                      $am_id = $business->sales;
-                      $am = DB::table('tbl_user')
-                          ->where('id', $am_id)
-                          ->first();
-                      if(isset($am->id)){
-                          $invoices[$key]['am'] = $am->user_name;
-                      }
-                  }
-                  else{
-                      unset($invoices[$key]);
-                  }
-              }
+                }
+                else {
+                        if(($user_level != 2 && isset($business->id) && ($business->sales == $user_id || $business->super == $user_id)) 
+                            || ($user_level == 2 && isset($business->id))
+                        ){
+                            $am_id = $business->sales;
+                            $am = DB::table('tbl_user')
+                                ->where('id', $am_id)
+                                ->first();
+                            if(isset($am->id)){
+                                $invoices[$key]['am'] = $am->user_name;
+                            }
+                        }
+                        else{
+                            unset($invoices[$key]);
+                        }
+                }
             }
         }
         $total = 0;
@@ -2160,7 +2211,11 @@ class InvoiceController extends Controller
         }
         $checkout = CheckoutModel::get();
         $plan_nums = [0, 1, 4, 12];
-        foreach($invoices as $key => $val){
+
+        foreach($invoices as $key => $val) {
+            if ($val->id == 446) {
+                $test = 100;
+            }
             $invoices[$key]['ava'] = 0;
             $start_date = date_create($val->start_date);
             $end_date = date_create($val->end_date);

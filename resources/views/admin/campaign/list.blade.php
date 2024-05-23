@@ -142,6 +142,8 @@
                                                         $inv_paid = 0;
                                                         foreach($invoices as $inv){
                                                             if($inv['campaign_id'] == $val->id){
+                                                                $invoice_data = $inv;
+                                                                $inv_campaign_id = $val->id;
                                                                 $inv_status = $inv['status'];
                                                                 $inv_date = $inv['invoice_date'];
                                                                 $inv_paid = $inv['paid'];                                                            
@@ -168,8 +170,10 @@
                                                             @if($inv_paid > 0 && $inv_date > $today)
                                                                 <?php $paid_flag = true?>
                                                                 <a class="label label-xl label-success label-inline">PAID</a>
+                                                                <input type="hidden" name="test" value="{{$inv_date}}">
                                                             @else
                                                                 <a href="/invoice-campaign/{{$val->id}}" class="label label-xl label-danger label-inline">UNPAID</a>
+                                                                <input type="hidden" name="test" value="{{$val->id}}_{{$inv_campaign_id}}_{{$inv_date}}">
                                                             @endif
                                                         @endif
                                                         @if($inv_status == 1)

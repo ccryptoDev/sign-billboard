@@ -96,10 +96,10 @@ class WebhookController extends Controller
         switch ($event->type) {
             case 'charge.succeeded':
                 $this->save_events($response);
-            return response()->json([
-                'intentId' => $response->id,
-                'message' => 'Charge Payment succeded'
-            ], 200); 
+                return response()->json([
+                                        'intentId' => $response->id,
+                                        'message' => 'Charge Payment succeded'
+                                    ], 200); 
     
             case 'invoice.payment_succeeded':
                 $sub_id = $response->subscription;
