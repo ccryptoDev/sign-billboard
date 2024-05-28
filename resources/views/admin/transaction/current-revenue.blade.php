@@ -461,6 +461,10 @@ var HOST_URL = "https://keenthemes.com/metronic/tools/preview";
 <script src="/js/suggest.js"></script>
 <script src="/assets/js/scripts.bundle.js"></script>
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script>
+    var currentRouteName = @json(Route::currentRouteName());
+    console.log(currentRouteName);
+</script>
 <script src="/assets/js/export-table.js"></script>
 <script>
 

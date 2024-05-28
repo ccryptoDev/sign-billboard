@@ -5,18 +5,34 @@ var KTDatatablesDataSourceHtml = function() {
 		var table = $('#kt_datatable');
 
 		// begin first table
-		table.DataTable({
-			responsive: true,
-			"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-			iDisplayLength : 25,
-			order : [0, 'desc'],
-			columnDefs: [
-			],
-            dom: 'Bfrtip',
-			buttons: [
-				'copy', 'csv', 'excel', 'pdf', 'print'
-			]
-		});
+		if( currentRouteName ==  'transaction-records') {
+			table.DataTable({
+				responsive: true,
+				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+				iDisplayLength : 25,
+				order : [4, 'desc'],
+				columnDefs: [
+				],
+							dom: 'Bfrtip',
+				buttons: [
+					'copy', 'csv', 'excel', 'pdf', 'print'
+				]
+			});
+		} else {
+			table.DataTable({
+				responsive: true,
+				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+				iDisplayLength : 25,
+				order : [0, 'desc'],
+				columnDefs: [
+				],
+							dom: 'Bfrtip',
+				buttons: [
+					'copy', 'csv', 'excel', 'pdf', 'print'
+				]
+			});
+		}
+
 		$(".inv_status").on('change', function(){
 			var search_val = $(this).val();
 			table.DataTable()
