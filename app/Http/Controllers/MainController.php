@@ -912,6 +912,7 @@ class MainController extends BaseController
             ->get();
         return $business_name;
     }
+
     public function get_business_name_by_session(){
         if(session('level') == 0){
             $business_name = DB::table("tbl_user")
@@ -970,6 +971,7 @@ class MainController extends BaseController
         }
         return $business_name;
     }
+    
     public function get_business_customer_name_by_session(){
         if(session('level') == 0){
             $business_name = DB::table("tbl_user")

@@ -87,7 +87,7 @@
                 $total_hold = $total_hold;
                 $status = 'danger';
                 $label = 'Not Verified';
-                print_r($account);
+                // print_r($account);
                 if(isset($account->id)){
                     if($account->payouts_enabled == true){
                         $status = 'success';
@@ -255,24 +255,36 @@
                                             if($check->invoice_id == $val->id){
                                                 if($start_date == ""){
                                                     $start_date = $check->created_at;
-                                                    $start_date = date_format($start_date, "m-d-Y");
+
+                                                    // $start_date = date_format($start_date, "m-d-Y");
+                                                    $start_date = date_format($start_date, "Y-m-d");
+
                                                     $end_date = date_create($val->invoice_date);
                                                     $dis_end_date = date_format($end_date, "Y-m-d");
-                                                    $end_date = date_format($end_date, "m-d-Y");
+
+                                                    // $end_date = date_format($end_date, "m-d-Y");
+                                                    $end_date = date_format($end_date, "Y-m-d");
                                                 }
                                             }
                                         }
                                         if($val->sub_id){
                                             $start_date = date_create($val->sub_date);
-                                            $start_date = date_format($start_date, "m-d-Y");
+
+                                            // $start_date = date_format($start_date, "m-d-Y");
+                                            $start_date = date_format($start_date, "Y-m-d");
+
                                             if($val->sch != 0){
                                                 $diff_days = $plan_nums[$val->sch] * 7 - 1;
                                                 $dis_end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
-                                                $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));                                                        
+
+                                                // $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date))); 
+                                                $end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date))); 
                                             } else {
-                                              $diff_days = $val->weeks * 7 - 1;
-                                              $dis_end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
-                                              $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));  
+                                                $diff_days = $val->weeks * 7 - 1;
+                                                $dis_end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
+
+                                                // $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date))); 
+                                                $end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));  
                                             }
                                         }
                                     ?>
@@ -351,7 +363,9 @@
                                             </td>
                                         </tr>
                                     @endif
-                                    @if( (($val->status == 0 || $val->status == 1) && $dis_end_date >= $today) ||  ($val->sub_id == null && $val->status == 0 && $val->paid != 0 && $dis_end_date < $today) ) 
+                                    @if( (($val->status == 0 || $val->status == 1) && $dis_end_date >= $today) ||  
+                                            ($val->sub_id == null && $val->status == 0 && $val->paid != 0 && $dis_end_date < $today) || 
+                                            ($val->sub_id == null && $val->status == 1 && $val->paid != 0 && $dis_end_date < $today) ) 
                                     {{-- @if( ($val->status == 0 || $val->status == 1) && ($dis_end_date >= $today) ) --}}
                                         <tr>
                                             <td>{{$val->business_name}}</td>
@@ -418,6 +432,9 @@
                                                             echo $avaialbe==0?'<span class="label label-xl label-primary label-inline mr-2 status">Available</span>':
                                                             '<span class="label label-xl label-danger label-inline mr-2 status">Paid</span>';
                                                         }
+                                                    }
+                                                    else if ($val->sub_id == null && $val->status == 1 && $val->paid != 0 && $dis_end_date < $today) {
+                                                        echo '<span class="label label-xl label-danger label-inline mr-2 status">Paid</span>';
                                                     }
                                                 ?>
                                             </td>

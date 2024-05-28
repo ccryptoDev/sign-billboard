@@ -307,6 +307,7 @@ class InvoiceController extends Controller
         $data['ads'] = $ads;
         return view('admin.invoice.create', $data);
     }
+
     // Manage Payment Method in Admin Panel
     public function manage_payment(Request $request){
         if(!Session::has('user_id') || (session('level') < 2 && session('level') > 5)){
@@ -320,6 +321,7 @@ class InvoiceController extends Controller
             return view('admin.payment.manage-view', $data);
         }
     }
+    
     public function change_payment_method(Request $request){
         if(!Session::has('user_id') || session('level') < 2){
             return "You don't have permission to update this";
@@ -1908,6 +1910,7 @@ class InvoiceController extends Controller
         $data['transactions'] = $transactions;
         return view('admin.transaction.transaction-view', $data);
     }
+
     public function records_view(Request $request){
         if(!Session::has('user_id')){
             return redirect()->back()->withErrors("You don't have permission to access this page");
@@ -2003,6 +2006,7 @@ class InvoiceController extends Controller
             return view('admin.transaction.records-am', $data);
         }
     }
+
     // Change Paid Flag Manually about Sub Invoices
     public function change_sub_status(Request $request){
         $id = $request['id'];

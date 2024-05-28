@@ -81,22 +81,34 @@
                                                     //         if($start_date == ""){
                                                                 // $start_date = $check->created_at;
                                                                 $start_date = date_create($val->start_date);
-                                                                $start_date = date_format($start_date, "m-d-Y");
+
+                                                                // $start_date = date_format($start_date, "m-d-Y");
+                                                                $start_date = date_format($start_date, "Y-m-d");
+
                                                                 // $end_date = date_create($val->invoice_date);
                                                                 $end_date = date_create($val->end_date);
-                                                                $end_date = date_format($end_date, "m-d-Y");
+
+                                                                // $end_date = date_format($end_date, "m-d-Y");
+                                                                $end_date = date_format($end_date, "Y-m-d");
                                                     //         }
                                                     //     }
                                                     // }
                                                     if($val->sub_id){
                                                         $start_date = date_create($val->sub_date);
-                                                        $start_date = date_format($start_date, "m-d-Y");
+
+                                                        // $start_date = date_format($start_date, "m-d-Y");
+                                                        $start_date = date_format($start_date, "Y-m-d");
+
                                                         if($val->sch != 0){
                                                             $diff_days = $plan_nums[$val->sch] * 7 - 1;
-                                                            $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
+
+                                                            // $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
+                                                            $end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));
                                                         }  else {
                                                             $diff_days = $val->weeks * 7 - 1;
-                                                            $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));  
+
+                                                            // $end_date = date('m-d-Y', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));  
+                                                            $end_date = date('Y-m-d', strtotime('+'.$diff_days.' days', strtotime($val->sub_date)));  
                                                         }
                                                     }
                                                 ?>
