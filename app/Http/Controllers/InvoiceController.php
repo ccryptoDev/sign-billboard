@@ -2091,14 +2091,52 @@ class InvoiceController extends Controller
         $stripe = new \Stripe\StripeClient(
             config('app.st_sec')
         );
+
         $account = '';
-        try{
+        try {
             if(isset($bank->id)){
                 $account = $stripe->accounts->retrieve(
                     $bank->extra,
                     []
                 );
             }
+
+            // Retrieve customers
+            $customers = $stripe->customers->all(['limit' => 10]);
+
+            // foreach ($customers->data as $customer) {
+            //     if ($customer->id == $account->id) {
+            //         try {
+            //             $subscriptions = $stripe->subscriptions->all([
+            //                 'customer' => $customer->id,
+            //                 'limit' => 1,
+            //                 'order' => ['created' => 'desc']
+            //             ]);
+
+            //             if (!empty($subscriptions->data)) {
+            //                 $latestSubscription = $subscriptions->data[0];
+
+            //                 $invoices = $stripe->invoices->all([
+            //                     'subscription' => $latestSubscription->id,
+            //                     'limit' => 1,
+            //                     'order' => ['created' => 'desc']
+            //                 ]);
+
+            //                 if (!empty($invoices->data)) {
+            //                     $latestInvoice = $invoices->data[0];
+            //                     $lastPaymentDate = date('Y-m-d H:i:s', $latestInvoice->created);
+            //                     $amountPaid = $latestInvoice->amount_paid / 100;
+
+            //                     echo "Customer ID: {$customer->id}\n";
+            //                     echo "Last Payment Date: {$lastPaymentDate}\n";
+            //                     echo "Amount Paid: \${$amountPaid}\n";
+            //                 }
+            //             }
+            //         } catch (\Stripe\Exception\ApiErrorException $e) {
+            //             echo 'Error retrieving subscriptions or invoices for customer ' . $customer->id . ': ' . $e->getMessage();
+            //         }
+            //     }
+            // }
         }
         catch(\Stripe\Exception\CardException $e) {}
         catch (\Stripe\Exception\RateLimitException $e) {} 
@@ -2107,6 +2145,7 @@ class InvoiceController extends Controller
         catch (\Stripe\Exception\ApiConnectionException $e) {} 
         catch (\Stripe\Exception\ApiErrorException $e) {} 
         catch (Exception $e) {}
+
         $data['bank'] = $bank;
         $data['account'] = $account;
         return view('admin.transaction.current-revenue', $data);
@@ -2251,7 +2290,7 @@ class InvoiceController extends Controller
                   $dis_end_date = $end_date;
                 }
             }
-            if((($val->status == 0 && $val->paid != 0 ) || $val->status == 1) && $val->sub_id != null && $dis_end_date < $today){
+            if( (($val->status == 0 && $val->paid != 0 ) || $val->status == 1) && $val->sub_id != null && $dis_end_date < $today ) {
                 if($user_level == 2 && $val->transfer_inex == 0){
                   $total += $val->part_amount * $com_rate / 100;
                   $invoices[$key]['ava'] = 1;
@@ -2269,6 +2308,13 @@ class InvoiceController extends Controller
                   $total += $val->part_amount * $com_rate / 100;
                 }
             }
+
+            // in case of subscription is cancened or there is an error in subscription
+            if ( ($val->sub_id == null || !isset($val->sub_id)) && $val->status == 0 && $val->paid != 0 && $dis_end_date < $today ) {
+                $total += $val->part_amount * $com_rate / 100;
+                $invoices[$key]['ava'] = 1;
+            }
+
             if($val->status == 0 && $end_date >= $today){
                 $total_hold += $val->part_amount * $com_rate / 100;
             }

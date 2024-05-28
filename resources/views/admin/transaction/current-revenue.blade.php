@@ -87,6 +87,7 @@
                 $total_hold = $total_hold;
                 $status = 'danger';
                 $label = 'Not Verified';
+                print_r($account);
                 if(isset($account->id)){
                     if($account->payouts_enabled == true){
                         $status = 'success';
@@ -350,7 +351,8 @@
                                             </td>
                                         </tr>
                                     @endif
-                                    @if(($val->status == 0 || $val->status == 1) && $dis_end_date >= $today)
+                                    @if( (($val->status == 0 || $val->status == 1) && $dis_end_date >= $today) ||  ($val->sub_id == null && $val->status == 0 && $val->paid != 0 && $dis_end_date < $today) ) 
+                                    {{-- @if( ($val->status == 0 || $val->status == 1) && ($dis_end_date >= $today) ) --}}
                                         <tr>
                                             <td>{{$val->business_name}}</td>
                                             <td>#{{$val->sub_id?11000 + $val->sub_id : $val->id}}</td>
@@ -402,7 +404,21 @@
                                                     else{
                                                         $avaialbe = $val->transfer;
                                                     }
-                                                    echo '<span class="label label-xl label-warning label-inline mr-2 status">On Hold</span>';
+                                                    
+                                                    if($dis_end_date >= $today) {
+                                                        echo '<span class="label label-xl label-warning label-inline mr-2 status">On Hold</span>';
+                                                    } 
+                                                    else if ($val->sub_id == null && $val->status == 0 && $val->paid != 0 && $dis_end_date < $today) {
+                                                        $type = $user_level - 2;
+                                                        if(session('level') == 2){
+                                                            echo $avaialbe==0?'<span class="label label-xl label-primary label-inline mr-2 status" onclick="change_status(`'.$val->sub_id.'`, `'.$type.'`)">Available</span>':
+                                                            '<span class="label label-xl label-danger label-inline mr-2 status" onclick="change_status(`'.$val->sub_id.'`, `'.$type.'`)">Paid</span>';
+                                                        }
+                                                        else{
+                                                            echo $avaialbe==0?'<span class="label label-xl label-primary label-inline mr-2 status">Available</span>':
+                                                            '<span class="label label-xl label-danger label-inline mr-2 status">Paid</span>';
+                                                        }
+                                                    }
                                                 ?>
                                             </td>
                                         </tr>

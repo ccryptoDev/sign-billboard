@@ -29,7 +29,8 @@ class CampaignController extends Controller
         $data['page_name'] = "Campaign Manager";
         return view('admin.campaign.manage', $data);
     }
-    public function list_campaign(Request $request){
+
+    public function list_campaign(Request $request) {
         if(!Session::has('user_id')){
             return redirect('login');
         }
@@ -37,12 +38,12 @@ class CampaignController extends Controller
         $data['page_name'] = "Campaign Manager";
         $data['users'] = DB::table('tbl_user')->get();
         $data['pa'] = \App::call("App\Http\Controllers\UserController@list_pa");
-        if(session('level') >= 2){
+        if(session('level') >= 2) {
             $data['business_name'] = \App::call("App\Http\Controllers\MainController@get_business_name_by_session");
-            if(session('level') == 2){
+            if(session('level') == 2) {
                 $data['campaign'] = UserCampaign::orderby('id', 'desc')->get();
             }
-            else{
+            else {
                 $business_name = [];
                 foreach($data['business_name'] as $val){
                     $business_name[] = $val->business_name;
@@ -54,7 +55,7 @@ class CampaignController extends Controller
             }
             $data['invoices'] = Invoices::get();
         }
-        else{
+        else {
             // if(session('level') == 1){
             //     $business_name = session('business_name');
             //     $data['campaign'] = UserCampaign::leftJoin('tbl_user', 'tbl_user.id', 'tbl_user_campaign.user_id')
