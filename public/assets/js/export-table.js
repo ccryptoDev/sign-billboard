@@ -5,7 +5,7 @@ var KTDatatablesDataSourceHtml = function() {
 		var table = $('#kt_datatable');
 
 		// begin first table
-		if( currentRouteName ==  'current-revenue') {
+		if( typeof currentRouteName !== 'undefined' && currentRouteName ==  'current-revenue' ) {
 			table.DataTable({
 				responsive: true,
 				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],

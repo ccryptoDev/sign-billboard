@@ -5,7 +5,7 @@ var KTDatatablesDataSourceHtml = function() {
 		var table = $('#kt_datatable');
 
 		// begin first table
-		if( currentRouteName ==  'transaction-records') {
+		if( typeof currentRouteName !== 'undefined' && currentRouteName ==  'transaction-records') {
 			table.DataTable({
 				responsive: true,
 				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -45,6 +45,7 @@ var KTDatatablesDataSourceHtml = function() {
 	$('.payment_method').select2({
 		placeholder: "Select a payment method"
 	});
+
 	$('#kt_datatable').on('select2:select','.payment_method',function (e) {
 	// $(".payment_method").on('select2:select', function(e){
 		var init = $(this).attr('data-val');
@@ -81,7 +82,8 @@ var KTDatatablesDataSourceHtml = function() {
 				toastr.error("Please refresh your browser");
 			}
 		})
-	})
+	});
+
 	$(".payment_method").on('select2:unselect', function(){
 		// $(this).attr('data-val', $(this).val());
 		$.ajax({
@@ -103,7 +105,8 @@ var KTDatatablesDataSourceHtml = function() {
 				toastr.error("Please refresh your browser");
 			}
 		})
-	})
+	});
+
 	$(".start_date, .end_date").on('change', function(){
 		var tag = $(this).parent().parent();
 		$.ajax({
@@ -130,7 +133,7 @@ var KTDatatablesDataSourceHtml = function() {
 				toastr.error("Please refresh your browser");
 			}
 		})
-	})
+	});
 
 	return {
 
