@@ -111,6 +111,7 @@ class AuthController extends Controller
         $data['pa'] = \App::call("App\Http\Controllers\UserController@list_pa");
         return view('front.register', $data);
     }
+    
     public function register(Request $request){
         $messages = [
             "business_name.required" => "Advertising Company is required",

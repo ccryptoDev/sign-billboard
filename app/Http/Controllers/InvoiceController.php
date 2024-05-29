@@ -321,7 +321,7 @@ class InvoiceController extends Controller
             return view('admin.payment.manage-view', $data);
         }
     }
-    
+
     public function change_payment_method(Request $request){
         if(!Session::has('user_id') || session('level') < 2){
             return "You don't have permission to update this";
@@ -366,7 +366,8 @@ class InvoiceController extends Controller
         PaymentMethod::where('business_name', $business_name)->delete();
         $payment = new PaymentMethod;
         $payment->business_name = $business_name;
-        $payment->payment_method = json_encode(["1", "2"]);
+        // $payment->payment_method = json_encode(["1", "2"]);
+        $payment->payment_method = json_encode(["1"]);
         $payment->save();
         return "success";
     }
