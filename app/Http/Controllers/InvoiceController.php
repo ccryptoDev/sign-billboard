@@ -367,7 +367,7 @@ class InvoiceController extends Controller
         $payment = new PaymentMethod;
         $payment->business_name = $business_name;
         // $payment->payment_method = json_encode(["1", "2"]);
-        $payment->payment_method = json_encode(["1"]);
+        $payment->payment_method = json_encode(["2"]);
         $payment->save();
         return "success";
     }
