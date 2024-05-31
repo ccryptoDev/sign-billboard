@@ -38,6 +38,8 @@ class AddSubToMainPlaylist extends Command
      */
     public function handle()
     {
+        \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay");
+        
         $masters = DB::table('tbl_locations')->get();
         $controller = app()->make('App\Http\Controllers\ManageScala');
         $maincontroller = app()->make('App\Http\Controllers\MainController');
