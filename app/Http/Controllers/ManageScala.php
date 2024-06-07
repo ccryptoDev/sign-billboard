@@ -608,6 +608,7 @@ class ManageScala extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
     }
+
     function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -616,5 +617,28 @@ class ManageScala extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    // Get Playlist By ID
+    function get_playlist_from_id($master_id){
+        $apiToken = $this->get_token();
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://avacms10.scala.com/ContentManager/api/rest/playlists/".$master_id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "apiToken: ".$apiToken
+            ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $res = json_decode($response, true);
+        return $res;
     }
 }
