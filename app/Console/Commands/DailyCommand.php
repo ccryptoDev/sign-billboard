@@ -55,6 +55,8 @@ class DailyCommand extends Command
      */
     public function handle()
     {
+        \Illuminate\Support\Facades\Log::info("artisan command: daily:command");
+
         $today = date("Y-m-d");
         // Cancel Subscriptions manually
         $stripe = new \Stripe\StripeClient(
