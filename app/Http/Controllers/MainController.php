@@ -3116,12 +3116,14 @@ class MainController extends BaseController
         // curl_close($curl);
     }
 
-    public function add_subplay_main($master_id,$sub){
+    public function add_subplay_main($master_id, $sub){
         $this->update_subplay($sub);
         $this->update_calculation($sub);
         $this->update_calculation($master_id);
         $apiToken = $this->get_token();
         $curl = curl_init();
+
+        \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay - master_id: " . $master_id . ", sub_id: " . $sub);
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://avacms10.scala.com/ContentManager/api/rest/playlists/".$master_id."/playlistItems",
