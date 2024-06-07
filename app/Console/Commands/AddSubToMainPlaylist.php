@@ -38,7 +38,7 @@ class AddSubToMainPlaylist extends Command
      */
     public function handle()
     {
-        // \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay");
+        \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay");
         
         $masters = DB::table('tbl_locations')->get();
         $controller = app()->make('App\Http\Controllers\ManageScala');
@@ -60,11 +60,11 @@ class AddSubToMainPlaylist extends Command
                 $subs = DB::table('tbl_sub_list')->where('master_id', $master_id)->get();
                 foreach($subs as $temp){
                     if(!in_array($temp->sub_id, $current_subs)){
-                        // echo $temp->sub_id.',';
-                        // app()->call([$maincontroller, 'add_subplay_main'], [
-                        //     "master_id" => $master_id,
-                        //     "sub_id" => $temp->sub_id,
-                        // ]);
+                        echo $temp->sub_id.',';
+                        app()->call([$maincontroller, 'add_subplay_main'], [
+                            "master_id" => $master_id,
+                            "sub_id" => $temp->sub_id,
+                        ]);
                     }
                 }
             }
