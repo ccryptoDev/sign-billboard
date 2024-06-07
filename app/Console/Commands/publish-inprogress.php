@@ -47,6 +47,8 @@ class PublishNewAdsTest extends Command
      */
     public function handle()
     {
+        \Illuminate\Support\Facades\Log::info("artisan command: publish:test (publish-inprogress)");
+
         $today = date("Y-m-d");
         $number = date('N', strtotime($today));
         if($number == 0){
@@ -63,6 +65,7 @@ class PublishNewAdsTest extends Command
         $business_names = [];
         $locations_by_business = [];
         $business_location = [];
+
         foreach ($campaigns as $key => $campaign) {
             if($campaign->business_name != '1 Demo' && $campaign->start_date <= $today && $campaign->end_date >= $today && ( $campaign->free_plan == 3 || $campaign->status ==1 || ($campaign->invoice_date > $today && $campaign->status == 0))){
                 $ava_locations = explode(",", $campaign->locations);
@@ -103,6 +106,7 @@ class PublishNewAdsTest extends Command
                 }
             }
         }
+
         print_r($locations_by_business);
         echo count($locations_by_business);
         // List of Ads
@@ -115,6 +119,7 @@ class PublishNewAdsTest extends Command
             ->orderBy('business_name')
             ->get();
         $exists = [];
+        
         foreach($ads as $key => $val){
             $business_name = $val->business_name;
             $locations = explode(",",$val->location);
@@ -128,7 +133,9 @@ class PublishNewAdsTest extends Command
             }
         }
         print_r($locations_by_business);
+
         return;
+
         // Create Sub Playlist
         $controller = app()->make('App\Http\Controllers\ManageScala');
         $maincontroller = app()->make('App\Http\Controllers\MainController');
@@ -166,6 +173,7 @@ class PublishNewAdsTest extends Command
             }
         }
         // End of Playlist
+
         foreach($ads as $media_temp){
             // Delivery Media To CM
                 $exist_flag = false;
@@ -220,6 +228,7 @@ class PublishNewAdsTest extends Command
                     ]);
         }
     }
+
     // Upload Media To CM
     public function upload_media_to_cm($id){
         $controller = app()->make('App\Http\Controllers\ManageScala');

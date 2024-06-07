@@ -63,6 +63,8 @@ class ManageMaster extends Command
         // Playlist
         $curl = curl_init();
 
+        \Illuminate\Support\Facades\Log::info("artisan command: create:master");
+
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://avacms10.scala.com/ContentManager/api/rest/playlists/all/?limit=1000",
             CURLOPT_RETURNTRANSFER => true,
@@ -78,7 +80,9 @@ class ManageMaster extends Command
         ));
         $response1 = curl_exec($curl);
         curl_close($curl);
+
         $res1 = json_decode($response1, true);
+        
         if(isset($res['list'])){
             $list = $res['list'];
             foreach($list as $channel){
@@ -116,11 +120,17 @@ class ManageMaster extends Command
                         ));
                         $response2 = curl_exec($curl);
                         curl_close($curl);
+
+                        \Illuminate\Support\Facades\Log::info("Create Master Playlist - Name : " . $channel['name']);
+
                         $exist = DB::table('tbl_locations')
                             ->where('name', $channel['name'])
                             ->first();
+
                         $res2 = json_decode($response2, true);
+
                         print_r($res2);
+
                         if(isset($exist->id)){
                             DB::table('tbl_locations')
                                 ->where('name', $channel['name'])
