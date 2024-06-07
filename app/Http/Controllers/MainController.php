@@ -3115,6 +3115,7 @@ class MainController extends BaseController
         // $response = curl_exec($curl);
         // curl_close($curl);
     }
+
     public function add_subplay_main($master_id,$sub){
         $this->update_subplay($sub);
         $this->update_calculation($sub);
@@ -3142,6 +3143,7 @@ class MainController extends BaseController
 
         curl_close($curl);
     }
+
     public function get_playlist_id($name){
         $urlname = str_replace(" ", "%20", $name);
         $apiToken =$this->get_token();
@@ -3171,6 +3173,7 @@ class MainController extends BaseController
             return $this->create_playlist($name);
         }
     }
+    
     public function get_playlist_id_from_delete($name){
         $urlname = str_replace(" ", "%20", $name);
 
