@@ -9,7 +9,7 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-									<a href="https://www.inex.net/" target="_blank"><img src="https://www.inex.net/logo.png" width="150" height="50" border="0" alt="" /></a>
+									<a href="https://www.inexsigns.net/" target="_blank"><img src="https://www.inexsigns.net/logo.png" width="150" height="50" border="0" alt="" /></a>
 								</td>
 							</tr>
 						</table>
@@ -40,7 +40,7 @@
 																<li>Activation Notification – Basically states that your account is approved.   It will outline what is your next step.</li>
 																<li>Initial Password Setup – The second email allows you to setup your password.  It will also inform you who is your Account Manager and provide their contact information. They should be talking with you shortly.</li>
 															</ul>
-                                                            In the meantime, you can always use our demo account to see how this all works.  Just go to <a href="https://www.inex.net">www.inex.net</a>. Click Login and enter demo@inex.net and ‘demo’ as the password.<br><br>
+                                                            In the meantime, you can always use our demo account to see how this all works.  Just go to <a href="https://www.inexsigns.net">www.inexsigns.net</a>. Click Login and enter demo@inex.net and ‘demo’ as the password.<br><br>
                                                             <ul>
 																<li>Remember that your Trusted Agent account is free. </li>
 																<li>You are never required to purchase any advertising slots at any time.</li>

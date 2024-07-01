@@ -9,7 +9,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-                                    <a href="https://www.inex.net/" target="_blank"><img src="https://www.inex.net/logo.png" width="150" height="50" border="0" alt="" /></a>
+                                    <a href="https://www.inexsigns.net/" target="_blank"><img src="https://www.inexsigns.net/logo.png" width="150" height="50" border="0" alt="" /></a>
                                 </td>
                             </tr>
                         </table>
@@ -138,7 +138,7 @@
                                                                 <li>Google</li>
                                                                 <li><a href="https://www.sos.ok.gov/(S(hfi1b155qdirny45spxepd45))/corp/corpInquiryFind.aspx">Secretary of State web site</a></li>
                                                             </ul>
-                                                            If you approve, go to <a href="https://www.inex.net/admin">INEX</a> to login. Then, using Manage Business Account page, switch their new status from Locked Out to Active.
+                                                            If you approve, go to <a href="https://www.inexsigns.net/admin">INEX</a> to login. Then, using Manage Business Account page, switch their new status from Locked Out to Active.
                                                             Once you do that, three emails will be generated.<br>
                                                             <ul>
                                                                 <li>The first one is sent to them regarding their Activation status. It will include your contact information.</li>

@@ -9,7 +9,7 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-									<a href="https://www.inex.net/" target="_blank"><img src="https://www.inex.net/logo.png" width="150" height="50" border="0" alt="" /></a>
+									<a href="https://www.inexsigns.net/" target="_blank"><img src="https://www.inexsigns.net/logo.png" width="150" height="50" border="0" alt="" /></a>
 								</td>
 							</tr>
 						</table>
@@ -46,12 +46,12 @@
                                                         @if($today == $campaign->end_date)
                                                         <td class="text-16 lh-26 a-left c-black" style="font-size:16px; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:left;  color:#282828;">
                                                             Your Campaign's ended.
-                                                            Keep bringing customers to your business by creating another campaign. <a href="https://www.inex.net/login">Login now</a> to set it up.
+                                                            Keep bringing customers to your business by creating another campaign. <a href="https://www.inexsigns.net/login">Login now</a> to set it up.
                                                         </td>
                                                         @else
                                                         <td class="text-16 lh-26 a-left c-black" style="font-size:16px; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:left; color:#282828;">
                                                             Your Campaign is ending on {{date_format($end, "m-d-Y")}}.<br>
-                                                            Keep bringing customers to your business by creating another campaign. <a href="https://www.inex.net/login">Login now</a> to set it up.
+                                                            Keep bringing customers to your business by creating another campaign. <a href="https://www.inexsigns.net/login">Login now</a> to set it up.
                                                         </td>
                                                         @endif
 													</tr>

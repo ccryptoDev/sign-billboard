@@ -9,7 +9,7 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td class="img-center p-30 px-15" style="font-size:0pt; line-height:0pt; text-align:center; padding: 30px; padding-left: 15px; padding-right: 15px;">
-									<a href="https://www.inex.net/" target="_blank"><img src="https://www.inex.net/logo.png" width="150" height="50" border="0" alt="" /></a>
+									<a href="https://www.inexsigns.net/" target="_blank"><img src="https://www.inexsigns.net/logo.png" width="150" height="50" border="0" alt="" /></a>
 								</td>
 							</tr>
 						</table>
@@ -41,7 +41,7 @@
                                                             @elseif($invoice->status == 1)
                                                                 Your invoice has been paid
                                                             @else
-                                                                Your advertising Campaign has been suspended.  We have not received payment for this advertising in time to run it as scheduled today.   If you feel this is in error, please call us at (405) 415-3002.   If you accidentally missed the invoice / payment, please login at www.inex.net, go to Campaign Manager and click on the campaign you wish reactivate.   You may use a credit card to get immediate activation.
+                                                                Your advertising Campaign has been suspended.  We have not received payment for this advertising in time to run it as scheduled today.   If you feel this is in error, please call us at (405) 415-3002.   If you accidentally missed the invoice / payment, please login at www.inexsigns.net, go to Campaign Manager and click on the campaign you wish reactivate.   You may use a credit card to get immediate activation.
                                                             @endif
                                                         </td>
 													</tr>
@@ -195,7 +195,7 @@
 															<table border="0" cellspacing="0" cellpadding="0" style="min-width: 200px;padding-top:50px">
 																<tr>
 																	<td class="btn-16 c-white l-white" bgcolor="#004289" style="font-size:16px; line-height:20px; mso-padding-alt:15px 35px; font-family:'PT Sans', Arial, sans-serif; text-align:center; font-weight:bold; text-transform:uppercase; border-radius:25px; min-width:auto !important; color:#ffffff;">
-																		<a href="https://www.inex.net/pay-invoice/{{base64_encode($campaign->id)}}" target="_blank" class="link c-white" style="display: block; padding: 15px 35px; text-decoration:none; color:#ffffff;">
+																		<a href="https://www.inexsigns.net/pay-invoice/{{base64_encode($campaign->id)}}" target="_blank" class="link c-white" style="display: block; padding: 15px 35px; text-decoration:none; color:#ffffff;">
 																			<span class="link c-white" style="text-decoration:none; color:#ffffff;">View Invoice</span>
 																		</a>
 																	</td>
