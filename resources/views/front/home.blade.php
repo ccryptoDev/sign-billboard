@@ -273,7 +273,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="g-recaptcha mb-3" name="g-recaptcha-response" data-sitekey="6LdRA1kkAAAAACQozwu8-LZNab4x9IQN-ohTNf84"></div>
+                            {{-- <div class="g-recaptcha mb-3" name="g-recaptcha-response" data-sitekey="6LdRA1kkAAAAACQozwu8-LZNab4x9IQN-ohTNf84"></div> --}}
+                            <div class="g-recaptcha mb-3" name="g-recaptcha-response" data-sitekey="6LciwwcqAAAAAAQ1ucuknlIdEkUYZkQS_99BxohZ"></div>
                         </div>
                         <div class="row">
                             <div class="col-12">
