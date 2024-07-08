@@ -3123,7 +3123,7 @@ class MainController extends BaseController
         $apiToken = $this->get_token();
         $curl = curl_init();
 
-        \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay - master_id: " . $master_id . ", sub_id: " . $sub);
+        // \Illuminate\Support\Facades\Log::info("artisan command: approve:subplay - master_id: " . $master_id . ", sub_id: " . $sub);
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://avacms10.scala.com/ContentManager/api/rest/playlists/".$master_id."/playlistItems",
