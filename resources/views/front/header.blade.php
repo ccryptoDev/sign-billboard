@@ -50,6 +50,7 @@
         })(window,document,'script','dataLayer','GTM-T6ZL8JC');</script>
         <!-- End Google Tag Manager -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        {{-- <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdW4pcpAAAAAEb9W-YRmLMZAPNZip3jXiyrafAR"></script> --}}
     </head>
 
     <body>
@@ -93,7 +94,7 @@
                             <li><a href="{{ route('pricing') }}" class="sub-menu-item">All Pricing</a></li>
                             <li><a href="{{ route('cost-calculator') }}" class="sub-menu-item">Billboard Calculator</a></li>
                             <li><a href="{{ route('financing') }}" class="sub-menu-item">Financing Options </a></li>
-                            <li><a href="{{ route('inex-packages') }}" class="sub-menu-item">INEX PACKAGES </a></li>
+                            {{-- <li><a href="{{ route('inex-packages') }}" class="sub-menu-item">INEX PACKAGES </a></li> --}}
                         </ul>
                     </li>
                     <li class="has-submenu parent-parent-menu-item">
