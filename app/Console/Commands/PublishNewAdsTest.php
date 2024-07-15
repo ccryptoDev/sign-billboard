@@ -49,7 +49,7 @@ class PublishNewAdsTest extends Command
      */
     public function handle()
     {
-        \Illuminate\Support\Facades\Log::info("artisan command: publish:test (PublishNewAdsTest)");
+        // \Illuminate\Support\Facades\Log::info("artisan command: publish:test (PublishNewAdsTest)");
 
         $today = date("Y-m-d");
         $number = date('N', strtotime($today));
