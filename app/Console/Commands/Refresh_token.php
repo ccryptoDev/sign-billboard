@@ -62,7 +62,7 @@ class Refresh_token extends Command
         curl_close($curl);
         $apiToken = json_decode($response,true)["apiToken"];
         
-        \Illuminate\Support\Facades\Log::info("artisan command: refresh:token: updated token: " . $apiToken);
+        // \Illuminate\Support\Facades\Log::info("artisan command: refresh:token: updated token: " . $apiToken);
 
         $token = CMToken::first();
         if(isset($token->id)){
