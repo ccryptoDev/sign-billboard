@@ -38,7 +38,7 @@ class Refresh_token extends Command
      */
     public function handle()
     {
-        \Illuminate\Support\Facades\Log::info("artisan command: refresh:token");
+        // \Illuminate\Support\Facades\Log::info("artisan command: refresh:token");
 
         $curl = curl_init();
 
