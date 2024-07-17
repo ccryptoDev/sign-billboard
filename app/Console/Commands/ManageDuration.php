@@ -37,7 +37,7 @@ class ManageDuration extends Command
      */
     public function handle()
     {
-        \Illuminate\Support\Facades\Log::info("artisan command: update:duration");
+        // \Illuminate\Support\Facades\Log::info("artisan command: update:duration");
 
         $controller = app()->make('App\Http\Controllers\ManageScala');
         $update_duration = app()->call([$controller, 'update_player_duration']);
