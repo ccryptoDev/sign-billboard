@@ -38,7 +38,7 @@ class ClearPlaylist extends Command
      */
     public function handle()
     {
-        \Illuminate\Support\Facades\Log::info("artisan command: clear:list");
+        // \Illuminate\Support\Facades\Log::info("artisan command: clear:list");
 
         $controller = app()->make('App\Http\Controllers\MainController');
         $apiToken = app()->call([$controller, 'get_token']);
