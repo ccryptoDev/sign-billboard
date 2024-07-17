@@ -63,7 +63,7 @@ class ManageMaster extends Command
         // Playlist
         $curl = curl_init();
 
-        \Illuminate\Support\Facades\Log::info("artisan command: create:master");
+        // \Illuminate\Support\Facades\Log::info("artisan command: create:master");
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://avacms10.scala.com/ContentManager/api/rest/playlists/all/?limit=1000",
