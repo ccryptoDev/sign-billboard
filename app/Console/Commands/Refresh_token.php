@@ -59,12 +59,32 @@ class Refresh_token extends Command
 
         $response = curl_exec($curl);
 
+        if (curl_errno($curl)) {
+            \Illuminate\Support\Facades\Log::error('cURL error: ' . curl_error($curl));
+            curl_close($curl);
+            return null;
+        }
+    
         curl_close($curl);
-        $apiToken = json_decode($response,true)["apiToken"];
-
-        // \Illuminate\Support\Facades\Log::info("artisan command: refresh:token: updated token: " . $apiToken);
+    
+        \Illuminate\Support\Facades\Log::info('Response: ' . $response);
+    
+        $decodedResponse = json_decode($response, true);
+    
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            \Illuminate\Support\Facades\Log::error('JSON decode error: ' . json_last_error_msg());
+            return null;
+        }
+    
+        if (!isset($decodedResponse["apiToken"])) {
+            \Illuminate\Support\Facades\Log::error('apiToken not found in response');
+            return null;
+        }
+    
+        $apiToken = $decodedResponse["apiToken"];
 
         $token = CMToken::first();
+
         if(isset($token->id)){
             CMToken::where('id', $token->id)
                 ->update([
