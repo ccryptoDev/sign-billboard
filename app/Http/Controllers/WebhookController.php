@@ -13,7 +13,6 @@ use App\SubInvoices;
 
 class WebhookController extends Controller
 {
-    
     // Webhook
     public function webhook(Request $request){
         $stripe = new \Stripe\StripeClient(
