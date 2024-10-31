@@ -109,11 +109,11 @@ class ManageInvoice extends Command
                 $user = DB::table('tbl_user')->where('id', $val->user_id)->first();
                 if($today == $val->end_date){
                     // 1 : Admin or Sales man, 0 : Client
-                    Mail::to('jing@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));    
+                    Mail::to('ming@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));    
                     // Mail::to('latenser@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));    
                 }
                 if($val->notification == 0){
-                    Mail::to('jing@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));
+                    Mail::to('ming@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));
                     // Mail::to('latenser@inex.net')->send(new EndCampNotification($user, $val, 1, $locations));
                     // DB::table('tbl_user_campaign')
                     //     ->where('id', $val->id)
