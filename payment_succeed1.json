@@ -1,0 +1,58 @@
+{
+  "id": "evt_1QCnl1EgkWotbC8fetCbi4sK",
+  "object": "event",
+  "api_version": "2020-08-27",
+  "created": 1729625323,
+  "data": {
+    "object": {
+      "id": "in_1QCmomEgkWotbC8fggWdSaWr",
+      "object": "invoice",
+      "account_country": "US",
+      "account_name": "Information Exchange Network, Inc.",
+      "account_tax_ids": null,
+      "amount_due": 57904,
+      "amount_paid": 57904,
+      "amount_remaining": 0,
+      "amount_shipping": 0,
+      "application": null,
+      "application_fee_amount": null,
+      "attempt_count": 1,
+      "attempted": true,
+      "auto_advance": false,
+      "automatic_tax": {
+        "enabled": false,
+        "liability": null,
+        "status": null
+      },
+      "automatically_finalizes_at": null,
+      "billing_reason": "subscription_cycle",
+      "charge": "ch_3QCnkyEgkWotbC8f1D3zxxYy",
+      "collection_method": "charge_automatically",
+      "created": 1729621712,
+      "currency": "usd",
+      "custom_fields": null,
+      "customer": "cus_QEV59WxOX7TQh8",
+      "customer_address": null,
+      "customer_email": "lcovault@simplyrent.com",
+      "customer_name": "SimplyHome",
+      "customer_phone": null,
+      "customer_shipping": null,
+      "customer_tax_exempt": "none",
+      "customer_tax_ids": [
+      ],
+      "default_payment_method": null,
+      "default_source": null,
+      "default_tax_rates": [
+      ],
+      "description": "Please Note:  >> A late fee of 1.5% will be added to invoices not paid within 30 days and a 3% convenience fee is added for all credit card payments. <<  INEX and especially its staff truly appreciate your business.   We all agree that providing the best product and great service is the key to your success - and ultimately, our success.   INEX - Simply the best support your company can use for your growth.  Our mission is to help you grow your revenue.",
+      "discount": null,
+      "discounts": [
+      ],
+      "due_date": null,
+      "effective_at": 1729625320,
+      "ending_balance": 0,
+      "footer": "INEX \n405-415-3002",
+      "from_invoice": null,
+      "hosted_invoice_url": 
+
+
