@@ -4,8 +4,12 @@
         <div class="row mt-5 mt-sm-0 align-items-center">
             <div class="col-lg-6 col-md-6">
                 <div class="title-heading me-lg-4">
-                    <h4 class="display-4 fw-bold mb-3"> {{$name}} </h4>
-                    <p class="text-muted para-desc mb-0"> {{$extra}} </p>
+                    <h4 class="display-4 fw-bold mb-3">
+                        @isset($name)
+                           {{$name}}  
+                        @endisset
+                    </h4>
+                    <p class="text-black para-desc mb-0"> {{$extra}} </p>
                     <div class="mt-4 pt-2">
                         <a href="javascript:void(0)" class="btn btn-soft-primary m-1 case-detail" data-id="{{$id}}">Download Now For Free</a>
                     </div>
