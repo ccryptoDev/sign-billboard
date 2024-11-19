@@ -9,9 +9,13 @@
                            {{$name}}  
                         @endisset
                     </h4>
-                    <p class="text-black para-desc mb-0"> {{$extra}} </p>
+                    <p class="text-black para-desc mb-0"> 
+                        @isset($extra)
+                        {{$extra}} 
+                        @endisset
+                    </p>
                     <div class="mt-4 pt-2">
-                        <a href="javascript:void(0)" class="btn btn-soft-primary m-1 case-detail" data-id="{{$id}}">Download Now For Free</a>
+                        <a href="javascript:void(0)" class="btn btn-soft-primary m-1 case-detail" data-id="{{isset($id) ? $id : ''}}">Download Now For Free</a>
                     </div>
                 </div>
             </div>
